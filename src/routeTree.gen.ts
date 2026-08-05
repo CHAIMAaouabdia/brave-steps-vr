@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AiRouteImport } from './routes/ai'
 import { Route as AssessmentRouteImport } from './routes/assessment'
 import { Route as AuthRouteImport } from './routes/auth'
@@ -21,12 +22,19 @@ import { Route as MoodRouteImport } from './routes/mood'
 import { Route as NotificationsRouteImport } from './routes/notifications'
 import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as ProgressRouteImport } from './routes/progress'
+import { Route as SettingsRouteImport } from './routes/settings'
+import { Route as TherapistRouteImport } from './routes/therapist'
 import { Route as TherapyRouteImport } from './routes/therapy'
 import { Route as SessionLevelIdRouteImport } from './routes/session.$levelId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AiRoute = AiRouteImport.update({
@@ -84,6 +92,16 @@ const ProgressRoute = ProgressRouteImport.update({
   path: '/progress',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SettingsRoute = SettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TherapistRoute = TherapistRouteImport.update({
+  id: '/therapist',
+  path: '/therapist',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TherapyRoute = TherapyRouteImport.update({
   id: '/therapy',
   path: '/therapy',
@@ -97,6 +115,7 @@ const SessionLevelIdRoute = SessionLevelIdRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
   '/ai': typeof AiRoute
   '/assessment': typeof AssessmentRoute
   '/auth': typeof AuthRoute
@@ -108,11 +127,14 @@ export interface FileRoutesByFullPath {
   '/notifications': typeof NotificationsRoute
   '/profile': typeof ProfileRoute
   '/progress': typeof ProgressRoute
+  '/settings': typeof SettingsRoute
+  '/therapist': typeof TherapistRoute
   '/therapy': typeof TherapyRoute
   '/session/$levelId': typeof SessionLevelIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
   '/ai': typeof AiRoute
   '/assessment': typeof AssessmentRoute
   '/auth': typeof AuthRoute
@@ -124,12 +146,15 @@ export interface FileRoutesByTo {
   '/notifications': typeof NotificationsRoute
   '/profile': typeof ProfileRoute
   '/progress': typeof ProgressRoute
+  '/settings': typeof SettingsRoute
+  '/therapist': typeof TherapistRoute
   '/therapy': typeof TherapyRoute
   '/session/$levelId': typeof SessionLevelIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
   '/ai': typeof AiRoute
   '/assessment': typeof AssessmentRoute
   '/auth': typeof AuthRoute
@@ -141,6 +166,8 @@ export interface FileRoutesById {
   '/notifications': typeof NotificationsRoute
   '/profile': typeof ProfileRoute
   '/progress': typeof ProgressRoute
+  '/settings': typeof SettingsRoute
+  '/therapist': typeof TherapistRoute
   '/therapy': typeof TherapyRoute
   '/session/$levelId': typeof SessionLevelIdRoute
 }
@@ -148,6 +175,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/admin'
     | '/ai'
     | '/assessment'
     | '/auth'
@@ -159,11 +187,14 @@ export interface FileRouteTypes {
     | '/notifications'
     | '/profile'
     | '/progress'
+    | '/settings'
+    | '/therapist'
     | '/therapy'
     | '/session/$levelId'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/admin'
     | '/ai'
     | '/assessment'
     | '/auth'
@@ -175,11 +206,14 @@ export interface FileRouteTypes {
     | '/notifications'
     | '/profile'
     | '/progress'
+    | '/settings'
+    | '/therapist'
     | '/therapy'
     | '/session/$levelId'
   id:
     | '__root__'
     | '/'
+    | '/admin'
     | '/ai'
     | '/assessment'
     | '/auth'
@@ -191,12 +225,15 @@ export interface FileRouteTypes {
     | '/notifications'
     | '/profile'
     | '/progress'
+    | '/settings'
+    | '/therapist'
     | '/therapy'
     | '/session/$levelId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdminRoute: typeof AdminRoute
   AiRoute: typeof AiRoute
   AssessmentRoute: typeof AssessmentRoute
   AuthRoute: typeof AuthRoute
@@ -208,6 +245,8 @@ export interface RootRouteChildren {
   NotificationsRoute: typeof NotificationsRoute
   ProfileRoute: typeof ProfileRoute
   ProgressRoute: typeof ProgressRoute
+  SettingsRoute: typeof SettingsRoute
+  TherapistRoute: typeof TherapistRoute
   TherapyRoute: typeof TherapyRoute
   SessionLevelIdRoute: typeof SessionLevelIdRoute
 }
@@ -219,6 +258,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/ai': {
@@ -298,6 +344,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProgressRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/therapist': {
+      id: '/therapist'
+      path: '/therapist'
+      fullPath: '/therapist'
+      preLoaderRoute: typeof TherapistRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/therapy': {
       id: '/therapy'
       path: '/therapy'
@@ -317,6 +377,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdminRoute: AdminRoute,
   AiRoute: AiRoute,
   AssessmentRoute: AssessmentRoute,
   AuthRoute: AuthRoute,
@@ -328,6 +389,8 @@ const rootRouteChildren: RootRouteChildren = {
   NotificationsRoute: NotificationsRoute,
   ProfileRoute: ProfileRoute,
   ProgressRoute: ProgressRoute,
+  SettingsRoute: SettingsRoute,
+  TherapistRoute: TherapistRoute,
   TherapyRoute: TherapyRoute,
   SessionLevelIdRoute: SessionLevelIdRoute,
 }
