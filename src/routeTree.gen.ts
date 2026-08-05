@@ -13,8 +13,12 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AiRouteImport } from './routes/ai'
 import { Route as AssessmentRouteImport } from './routes/assessment'
 import { Route as AuthRouteImport } from './routes/auth'
+import { Route as CalendarRouteImport } from './routes/calendar'
 import { Route as DashboardRouteImport } from './routes/dashboard'
+import { Route as FilesRouteImport } from './routes/files'
+import { Route as MessagesRouteImport } from './routes/messages'
 import { Route as MoodRouteImport } from './routes/mood'
+import { Route as NotificationsRouteImport } from './routes/notifications'
 import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as ProgressRouteImport } from './routes/progress'
 import { Route as TherapyRouteImport } from './routes/therapy'
@@ -40,14 +44,34 @@ const AuthRoute = AuthRouteImport.update({
   path: '/auth',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CalendarRoute = CalendarRouteImport.update({
+  id: '/calendar',
+  path: '/calendar',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DashboardRoute = DashboardRouteImport.update({
   id: '/dashboard',
   path: '/dashboard',
   getParentRoute: () => rootRouteImport,
 } as any)
+const FilesRoute = FilesRouteImport.update({
+  id: '/files',
+  path: '/files',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MessagesRoute = MessagesRouteImport.update({
+  id: '/messages',
+  path: '/messages',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const MoodRoute = MoodRouteImport.update({
   id: '/mood',
   path: '/mood',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NotificationsRoute = NotificationsRouteImport.update({
+  id: '/notifications',
+  path: '/notifications',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProfileRoute = ProfileRouteImport.update({
@@ -76,8 +100,12 @@ export interface FileRoutesByFullPath {
   '/ai': typeof AiRoute
   '/assessment': typeof AssessmentRoute
   '/auth': typeof AuthRoute
+  '/calendar': typeof CalendarRoute
   '/dashboard': typeof DashboardRoute
+  '/files': typeof FilesRoute
+  '/messages': typeof MessagesRoute
   '/mood': typeof MoodRoute
+  '/notifications': typeof NotificationsRoute
   '/profile': typeof ProfileRoute
   '/progress': typeof ProgressRoute
   '/therapy': typeof TherapyRoute
@@ -88,8 +116,12 @@ export interface FileRoutesByTo {
   '/ai': typeof AiRoute
   '/assessment': typeof AssessmentRoute
   '/auth': typeof AuthRoute
+  '/calendar': typeof CalendarRoute
   '/dashboard': typeof DashboardRoute
+  '/files': typeof FilesRoute
+  '/messages': typeof MessagesRoute
   '/mood': typeof MoodRoute
+  '/notifications': typeof NotificationsRoute
   '/profile': typeof ProfileRoute
   '/progress': typeof ProgressRoute
   '/therapy': typeof TherapyRoute
@@ -101,8 +133,12 @@ export interface FileRoutesById {
   '/ai': typeof AiRoute
   '/assessment': typeof AssessmentRoute
   '/auth': typeof AuthRoute
+  '/calendar': typeof CalendarRoute
   '/dashboard': typeof DashboardRoute
+  '/files': typeof FilesRoute
+  '/messages': typeof MessagesRoute
   '/mood': typeof MoodRoute
+  '/notifications': typeof NotificationsRoute
   '/profile': typeof ProfileRoute
   '/progress': typeof ProgressRoute
   '/therapy': typeof TherapyRoute
@@ -115,8 +151,12 @@ export interface FileRouteTypes {
     | '/ai'
     | '/assessment'
     | '/auth'
+    | '/calendar'
     | '/dashboard'
+    | '/files'
+    | '/messages'
     | '/mood'
+    | '/notifications'
     | '/profile'
     | '/progress'
     | '/therapy'
@@ -127,8 +167,12 @@ export interface FileRouteTypes {
     | '/ai'
     | '/assessment'
     | '/auth'
+    | '/calendar'
     | '/dashboard'
+    | '/files'
+    | '/messages'
     | '/mood'
+    | '/notifications'
     | '/profile'
     | '/progress'
     | '/therapy'
@@ -139,8 +183,12 @@ export interface FileRouteTypes {
     | '/ai'
     | '/assessment'
     | '/auth'
+    | '/calendar'
     | '/dashboard'
+    | '/files'
+    | '/messages'
     | '/mood'
+    | '/notifications'
     | '/profile'
     | '/progress'
     | '/therapy'
@@ -152,8 +200,12 @@ export interface RootRouteChildren {
   AiRoute: typeof AiRoute
   AssessmentRoute: typeof AssessmentRoute
   AuthRoute: typeof AuthRoute
+  CalendarRoute: typeof CalendarRoute
   DashboardRoute: typeof DashboardRoute
+  FilesRoute: typeof FilesRoute
+  MessagesRoute: typeof MessagesRoute
   MoodRoute: typeof MoodRoute
+  NotificationsRoute: typeof NotificationsRoute
   ProfileRoute: typeof ProfileRoute
   ProgressRoute: typeof ProgressRoute
   TherapyRoute: typeof TherapyRoute
@@ -190,6 +242,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/calendar': {
+      id: '/calendar'
+      path: '/calendar'
+      fullPath: '/calendar'
+      preLoaderRoute: typeof CalendarRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/dashboard': {
       id: '/dashboard'
       path: '/dashboard'
@@ -197,11 +256,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/files': {
+      id: '/files'
+      path: '/files'
+      fullPath: '/files'
+      preLoaderRoute: typeof FilesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/messages': {
+      id: '/messages'
+      path: '/messages'
+      fullPath: '/messages'
+      preLoaderRoute: typeof MessagesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/mood': {
       id: '/mood'
       path: '/mood'
       fullPath: '/mood'
       preLoaderRoute: typeof MoodRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/notifications': {
+      id: '/notifications'
+      path: '/notifications'
+      fullPath: '/notifications'
+      preLoaderRoute: typeof NotificationsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/profile': {
@@ -240,8 +320,12 @@ const rootRouteChildren: RootRouteChildren = {
   AiRoute: AiRoute,
   AssessmentRoute: AssessmentRoute,
   AuthRoute: AuthRoute,
+  CalendarRoute: CalendarRoute,
   DashboardRoute: DashboardRoute,
+  FilesRoute: FilesRoute,
+  MessagesRoute: MessagesRoute,
   MoodRoute: MoodRoute,
+  NotificationsRoute: NotificationsRoute,
   ProfileRoute: ProfileRoute,
   ProgressRoute: ProgressRoute,
   TherapyRoute: TherapyRoute,
