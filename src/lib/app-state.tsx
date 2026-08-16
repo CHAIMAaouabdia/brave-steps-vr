@@ -7,6 +7,7 @@ import {
   useState,
   type ReactNode,
 } from "react";
+import type { Answers, Scenario } from "@/lib/questionnaire";
 
 export type Role = "patient" | "therapist";
 
@@ -54,9 +55,14 @@ type Progress = {
   streak: number;
 };
 
+export type LevelResult = { score: number; anxiety: number; success: boolean; date: string };
+
 type State = {
   user: User | null;
   assessment: Assessment | null;
+  answers: Answers | null;
+  scenario: Scenario | null;
+  results: Record<string, LevelResult>;
   progress: Progress;
   moods: MoodEntry[];
   notifications: AppNotification[];
@@ -66,6 +72,9 @@ type State = {
 const defaultState: State = {
   user: null,
   assessment: null,
+  answers: null,
+  scenario: null,
+  results: {},
   progress: { xp: 1840, coins: 320, completed: [1, 2, 3], sessions: 17, streak: 5 },
   moods: [
     { id: "m1", mood: "😊", note: "Bonne séance ce matin", date: "2026-08-03" },
@@ -87,6 +96,8 @@ type Ctx = State & {
   register: (u: User) => void;
   logout: () => void;
   setAssessment: (a: Assessment) => void;
+  setScenario: (s: Scenario, answers: Answers) => void;
+  recordResult: (levelId: number, r: Omit<LevelResult, "date">) => void;
   completeLevel: (id: number, xp: number, coins: number) => void;
   addMood: (mood: string, note: string) => void;
   markAllRead: () => void;
@@ -140,6 +151,15 @@ export function AppStateProvider({ children }: { children: ReactNode }) {
       register: (u) => update((s) => ({ ...s, user: u })),
       logout: () => update((s) => ({ ...s, user: null })),
       setAssessment: (a) => update((s) => ({ ...s, assessment: a })),
+      setScenario: (sc, answers) => update((s) => ({ ...s, scenario: sc, answers })),
+      recordResult: (levelId, r) =>
+        update((s) => ({
+          ...s,
+          results: {
+            ...s.results,
+            [levelId]: { ...r, date: new Date().toISOString() },
+          },
+        })),
       completeLevel: (id, xp, coins) =>
         update((s) => ({
           ...s,
