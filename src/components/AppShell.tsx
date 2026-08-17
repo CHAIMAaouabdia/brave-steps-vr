@@ -91,7 +91,7 @@ export function AppShell({
         </Link>
       ))}
       <p className="mt-4 px-3 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
-        Pro
+        {t("shell.pro")}
       </p>
       {PRO_NAV.map((item) => (
         <Link
@@ -123,8 +123,10 @@ export function AppShell({
         </Link>
         <NavList />
         <div className="mt-auto rounded-3xl border bg-card p-4 shadow-soft">
-          <p className="text-xs text-muted-foreground">Niveau actuel</p>
-          <p className="text-2xl font-bold">Niveau {level}</p>
+          <p className="text-xs text-muted-foreground">{t("shell.currentLevel")}</p>
+          <p className="text-2xl font-bold">
+            {t("shell.level")} {level}
+          </p>
           <div className="mt-2 h-2 w-full overflow-hidden rounded-full bg-muted">
             <div
               className="h-full gradient-calm transition-all"
@@ -214,7 +216,7 @@ export function AppShell({
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end" className="w-56">
                   <DropdownMenuLabel>
-                    {user ? `${user.firstName} ${user.lastName}` : "Invité"}
+                    {user ? `${user.firstName} ${user.lastName}` : t("shell.guest")}
                     <p className="text-xs font-normal text-muted-foreground">
                       {user?.email ?? "demo@gphob.io"}
                     </p>

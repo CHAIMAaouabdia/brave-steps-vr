@@ -25,6 +25,7 @@ import { Route as ProgressRouteImport } from './routes/progress'
 import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as TherapistRouteImport } from './routes/therapist'
 import { Route as TherapyRouteImport } from './routes/therapy'
+import { Route as GameLevelIdRouteImport } from './routes/game.$levelId'
 import { Route as SessionLevelIdRouteImport } from './routes/session.$levelId'
 
 const IndexRoute = IndexRouteImport.update({
@@ -107,6 +108,11 @@ const TherapyRoute = TherapyRouteImport.update({
   path: '/therapy',
   getParentRoute: () => rootRouteImport,
 } as any)
+const GameLevelIdRoute = GameLevelIdRouteImport.update({
+  id: '/game/$levelId',
+  path: '/game/$levelId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SessionLevelIdRoute = SessionLevelIdRouteImport.update({
   id: '/session/$levelId',
   path: '/session/$levelId',
@@ -130,6 +136,7 @@ export interface FileRoutesByFullPath {
   '/settings': typeof SettingsRoute
   '/therapist': typeof TherapistRoute
   '/therapy': typeof TherapyRoute
+  '/game/$levelId': typeof GameLevelIdRoute
   '/session/$levelId': typeof SessionLevelIdRoute
 }
 export interface FileRoutesByTo {
@@ -149,6 +156,7 @@ export interface FileRoutesByTo {
   '/settings': typeof SettingsRoute
   '/therapist': typeof TherapistRoute
   '/therapy': typeof TherapyRoute
+  '/game/$levelId': typeof GameLevelIdRoute
   '/session/$levelId': typeof SessionLevelIdRoute
 }
 export interface FileRoutesById {
@@ -169,6 +177,7 @@ export interface FileRoutesById {
   '/settings': typeof SettingsRoute
   '/therapist': typeof TherapistRoute
   '/therapy': typeof TherapyRoute
+  '/game/$levelId': typeof GameLevelIdRoute
   '/session/$levelId': typeof SessionLevelIdRoute
 }
 export interface FileRouteTypes {
@@ -190,6 +199,7 @@ export interface FileRouteTypes {
     | '/settings'
     | '/therapist'
     | '/therapy'
+    | '/game/$levelId'
     | '/session/$levelId'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -209,6 +219,7 @@ export interface FileRouteTypes {
     | '/settings'
     | '/therapist'
     | '/therapy'
+    | '/game/$levelId'
     | '/session/$levelId'
   id:
     | '__root__'
@@ -228,6 +239,7 @@ export interface FileRouteTypes {
     | '/settings'
     | '/therapist'
     | '/therapy'
+    | '/game/$levelId'
     | '/session/$levelId'
   fileRoutesById: FileRoutesById
 }
@@ -248,6 +260,7 @@ export interface RootRouteChildren {
   SettingsRoute: typeof SettingsRoute
   TherapistRoute: typeof TherapistRoute
   TherapyRoute: typeof TherapyRoute
+  GameLevelIdRoute: typeof GameLevelIdRoute
   SessionLevelIdRoute: typeof SessionLevelIdRoute
 }
 
@@ -365,6 +378,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TherapyRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/game/$levelId': {
+      id: '/game/$levelId'
+      path: '/game/$levelId'
+      fullPath: '/game/$levelId'
+      preLoaderRoute: typeof GameLevelIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/session/$levelId': {
       id: '/session/$levelId'
       path: '/session/$levelId'
@@ -392,6 +412,7 @@ const rootRouteChildren: RootRouteChildren = {
   SettingsRoute: SettingsRoute,
   TherapistRoute: TherapistRoute,
   TherapyRoute: TherapyRoute,
+  GameLevelIdRoute: GameLevelIdRoute,
   SessionLevelIdRoute: SessionLevelIdRoute,
 }
 export const routeTree = rootRouteImport

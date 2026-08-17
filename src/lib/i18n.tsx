@@ -1,9 +1,27 @@
 import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
+import type { Dict } from "./i18n/types";
+import { adminDict } from "./i18n/admin";
+import { aiDict } from "./i18n/ai";
+import { authDict } from "./i18n/auth";
+import { calendarDict } from "./i18n/calendar";
+import { dashboardDict } from "./i18n/dashboard";
+import { filesDict } from "./i18n/files";
+import { gameDict } from "./i18n/game";
+import { landingDict } from "./i18n/landing";
+import { messagesDict } from "./i18n/messages";
+import { moodDict } from "./i18n/mood";
+import { notificationsDict } from "./i18n/notifications";
+import { profileDict } from "./i18n/profile";
+import { progressDict } from "./i18n/progress";
+import { sessionDict } from "./i18n/session";
+import { settingsDict } from "./i18n/settings";
+import { therapistDict } from "./i18n/therapist";
+import { therapyDict } from "./i18n/therapy";
 
 export type Lang = "fr" | "en" | "ar";
 
 /** key: [fr, en, ar] */
-const T: Record<string, [string, string, string]> = {
+const BASE: Dict = {
   // ---------- navigation / shell ----------
   "nav.how": ["Comment ça marche", "How it works", "كيف يعمل"],
   "nav.benefits": ["Bénéfices", "Benefits", "الفوائد"],
@@ -196,11 +214,35 @@ const T: Record<string, [string, string, string]> = {
   "set.security": ["Sécurité & accessibilité", "Security & accessibility", "الأمان وإمكانية الوصول"],
 };
 
+const T: Dict = {
+  ...BASE,
+  ...landingDict,
+  ...authDict,
+  ...dashboardDict,
+  ...therapyDict,
+  ...sessionDict,
+  ...gameDict,
+  ...profileDict,
+  ...progressDict,
+  ...moodDict,
+  ...aiDict,
+  ...calendarDict,
+  ...messagesDict,
+  ...filesDict,
+  ...notificationsDict,
+  ...therapistDict,
+  ...adminDict,
+  ...settingsDict,
+};
+
 type I18nCtx = {
   lang: Lang;
   setLang: (l: Lang) => void;
-  t: (key: string) => string;
+  /** t("key") or t("key", { name: "Yasmine" }) replacing {name} placeholders */
+  t: (key: string, vars?: Record<string, string | number>) => string;
   dir: "ltr" | "rtl";
+  /** picks the right value from a [fr, en, ar] tuple or a {fr,en,ar} object */
+  pick: <V>(v: [V, V, V] | { fr: V; en: V; ar: V }) => V;
 };
 
 const idx: Record<Lang, 0 | 1 | 2> = { fr: 0, en: 1, ar: 2 };
@@ -228,7 +270,15 @@ export function I18nProvider({ children }: { children: ReactNode }) {
         setLangState(l);
         localStorage.setItem("gphob.lang", l);
       },
-      t: (key) => T[key]?.[idx[lang]] ?? T[key]?.[0] ?? key,
+      t: (key, vars) => {
+        const raw = T[key]?.[idx[lang]] ?? T[key]?.[0] ?? key;
+        if (!vars) return raw;
+        return raw.replace(/\{(\w+)\}/g, (m, k: string) =>
+          k in vars ? String(vars[k]) : m,
+        );
+      },
+      pick: (v) =>
+        Array.isArray(v) ? (v[idx[lang]] as never) : (v[lang] as never),
     }),
     [lang],
   );

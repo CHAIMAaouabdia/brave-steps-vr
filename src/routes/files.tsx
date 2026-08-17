@@ -6,6 +6,7 @@ import { AppShell } from "@/components/AppShell";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { useI18n } from "@/lib/i18n";
 
 export const Route = createFileRoute("/files")({
   head: () => ({
@@ -22,6 +23,7 @@ export const Route = createFileRoute("/files")({
 type Doc = { name: string; size: string; type: string };
 
 function FilesPage() {
+  const { t } = useI18n();
   const [files, setFiles] = useState<Doc[]>([
     { name: "Bilan_psychologique_2026.pdf", size: "412 Ko", type: "pdf" },
     { name: "Ordonnance_juin.pdf", size: "88 Ko", type: "pdf" },
@@ -29,13 +31,13 @@ function FilesPage() {
   ]);
 
   return (
-    <AppShell title="Documents" subtitle="PDF, images et rapports médicaux">
+    <AppShell title={t("files.title")} subtitle={t("files.subtitle")}>
       <Card className="rounded-4xl border-none shadow-soft">
         <CardContent className="p-6">
           <label className="grid cursor-pointer place-items-center rounded-4xl border-2 border-dashed p-10 text-center transition-colors hover:bg-muted/50">
             <Upload className="size-8 text-primary" />
-            <p className="mt-3 font-semibold">Déposer un fichier</p>
-            <p className="text-xs text-muted-foreground">PDF, JPG, PNG — 20 Mo max</p>
+            <p className="mt-3 font-semibold">{t("files.drop")}</p>
+            <p className="text-xs text-muted-foreground">{t("files.dropHint")}</p>
             <input
               type="file"
               className="hidden"
@@ -44,10 +46,10 @@ function FilesPage() {
                 const f = e.target.files?.[0];
                 if (!f) return;
                 setFiles((p) => [
-                  { name: f.name, size: `${Math.round(f.size / 1024)} Ko`, type: f.type.includes("image") ? "image" : "pdf" },
+                  { name: f.name, size: `${Math.round(f.size / 1024)} ${t("files.ko")}`, type: f.type.includes("image") ? "image" : "pdf" },
                   ...p,
                 ]);
-                toast.success("Fichier téléversé (simulation)");
+                toast.success(t("files.toastUploaded"));
               }}
             />
           </label>
@@ -63,7 +65,7 @@ function FilesPage() {
                   <p className="text-xs text-muted-foreground">{f.size}</p>
                 </div>
                 <Badge variant="secondary" className="hidden rounded-full sm:inline-flex">{f.type.toUpperCase()}</Badge>
-                <Button size="icon" variant="ghost" onClick={() => toast.success("Téléchargement simulé")}>
+                <Button size="icon" variant="ghost" onClick={() => toast.success(t("files.toastDownload"))}>
                   <Download className="size-4" />
                 </Button>
               </div>
