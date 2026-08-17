@@ -1,9 +1,27 @@
 import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
+import type { Dict } from "./i18n/types";
+import { adminDict } from "./i18n/admin";
+import { aiDict } from "./i18n/ai";
+import { authDict } from "./i18n/auth";
+import { calendarDict } from "./i18n/calendar";
+import { dashboardDict } from "./i18n/dashboard";
+import { filesDict } from "./i18n/files";
+import { gameDict } from "./i18n/game";
+import { landingDict } from "./i18n/landing";
+import { messagesDict } from "./i18n/messages";
+import { moodDict } from "./i18n/mood";
+import { notificationsDict } from "./i18n/notifications";
+import { profileDict } from "./i18n/profile";
+import { progressDict } from "./i18n/progress";
+import { sessionDict } from "./i18n/session";
+import { settingsDict } from "./i18n/settings";
+import { therapistDict } from "./i18n/therapist";
+import { therapyDict } from "./i18n/therapy";
 
 export type Lang = "fr" | "en" | "ar";
 
 /** key: [fr, en, ar] */
-const T: Record<string, [string, string, string]> = {
+const BASE: Dict = {
   // ---------- navigation / shell ----------
   "nav.how": ["Comment ça marche", "How it works", "كيف يعمل"],
   "nav.benefits": ["Bénéfices", "Benefits", "الفوائد"],
