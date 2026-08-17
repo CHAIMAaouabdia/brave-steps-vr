@@ -214,6 +214,27 @@ const BASE: Dict = {
   "set.security": ["Sécurité & accessibilité", "Security & accessibility", "الأمان وإمكانية الوصول"],
 };
 
+const T: Dict = {
+  ...BASE,
+  ...landingDict,
+  ...authDict,
+  ...dashboardDict,
+  ...therapyDict,
+  ...sessionDict,
+  ...gameDict,
+  ...profileDict,
+  ...progressDict,
+  ...moodDict,
+  ...aiDict,
+  ...calendarDict,
+  ...messagesDict,
+  ...filesDict,
+  ...notificationsDict,
+  ...therapistDict,
+  ...adminDict,
+  ...settingsDict,
+};
+
 type I18nCtx = {
   lang: Lang;
   setLang: (l: Lang) => void;
