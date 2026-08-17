@@ -270,7 +270,15 @@ export function I18nProvider({ children }: { children: ReactNode }) {
         setLangState(l);
         localStorage.setItem("gphob.lang", l);
       },
-      t: (key) => T[key]?.[idx[lang]] ?? T[key]?.[0] ?? key,
+      t: (key, vars) => {
+        const raw = T[key]?.[idx[lang]] ?? T[key]?.[0] ?? key;
+        if (!vars) return raw;
+        return raw.replace(/\{(\w+)\}/g, (m, k: string) =>
+          k in vars ? String(vars[k]) : m,
+        );
+      },
+      pick: (v) =>
+        Array.isArray(v) ? (v[idx[lang]] as never) : (v[lang] as never),
     }),
     [lang],
   );
