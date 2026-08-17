@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Calendar } from "@/components/ui/calendar";
 import { cn } from "@/lib/utils";
+import { useI18n } from "@/lib/i18n";
 
 export const Route = createFileRoute("/calendar")({
   head: () => ({
@@ -21,25 +22,26 @@ export const Route = createFileRoute("/calendar")({
 });
 
 const UPCOMING = [
-  { d: "Ven. 7 août · 14:30", t: "Consultation Dr. Rahmani", tag: "Visio" },
-  { d: "Lun. 10 août · 18:00", t: "Session niveau 5 — Le pont suspendu", tag: "VR" },
-  { d: "Mer. 12 août · 17:30", t: "Session niveau 6 — Vers la lumière", tag: "VR" },
+  { dKey: "cal.up1.d", tKey: "cal.up1.t", tag: "cal.visio" },
+  { dKey: "cal.up2.d", tKey: "cal.up2.t", tag: "cal.vr" },
+  { dKey: "cal.up3.d", tKey: "cal.up3.t", tag: "cal.vr" },
 ];
 
 const HISTORY = [
-  { d: "4 août · 18:20", t: "Niveau 3 — Pluie d'étoiles", s: "Réussie · 9 min" },
-  { d: "2 août · 19:05", t: "Niveau 2 — Les clés du calme", s: "Réussie · 8 min" },
-  { d: "31 juil. · 17:40", t: "Niveau 1 — Premier souffle", s: "Réussie · 6 min" },
+  { dKey: "cal.h1.d", tKey: "cal.h1.t", sKey: "cal.h1.s" },
+  { dKey: "cal.h2.d", tKey: "cal.h2.t", sKey: "cal.h2.s" },
+  { dKey: "cal.h3.d", tKey: "cal.h3.t", sKey: "cal.h3.s" },
 ];
 
 function CalendarPage() {
+  const { t } = useI18n();
   return (
     <AppShell
-      title="Calendrier"
-      subtitle="Séances et rendez-vous"
+      title={t("cal.title")}
+      subtitle={t("cal.subtitle")}
       action={
-        <Button size="sm" className="gradient-primary rounded-full" onClick={() => toast.success("Rendez-vous demandé (simulation)")}>
-          <Plus className="size-4" /> Rendez-vous
+        <Button size="sm" className="gradient-primary rounded-full" onClick={() => toast.success(t("cal.toastRequested"))}>
+          <Plus className="size-4" /> {t("cal.appointment")}
         </Button>
       }
     >
@@ -51,15 +53,15 @@ function CalendarPage() {
         </Card>
         <Card className="rounded-4xl border-none shadow-soft">
           <CardContent className="p-6">
-            <h3 className="font-bold">À venir</h3>
+            <h3 className="font-bold">{t("cal.upcoming")}</h3>
             <div className="mt-4 space-y-3">
               {UPCOMING.map((u) => (
-                <div key={u.t} className="rounded-3xl border p-4">
+                <div key={u.tKey} className="rounded-3xl border p-4">
                   <div className="flex items-center justify-between gap-2">
-                    <p className="text-xs text-muted-foreground">{u.d}</p>
-                    <Badge variant="secondary" className="rounded-full">{u.tag}</Badge>
+                    <p className="text-xs text-muted-foreground">{t(u.dKey)}</p>
+                    <Badge variant="secondary" className="rounded-full">{t(u.tag)}</Badge>
                   </div>
-                  <p className="mt-1 text-sm font-medium">{u.t}</p>
+                  <p className="mt-1 text-sm font-medium">{t(u.tKey)}</p>
                 </div>
               ))}
             </div>
@@ -67,14 +69,14 @@ function CalendarPage() {
         </Card>
         <Card className="rounded-4xl border-none shadow-soft">
           <CardContent className="p-6">
-            <h3 className="font-bold">Historique</h3>
+            <h3 className="font-bold">{t("cal.history")}</h3>
             <div className="mt-4 space-y-3">
               {HISTORY.map((h) => (
-                <div key={h.t} className="flex items-start gap-3 rounded-3xl bg-muted/50 p-3">
+                <div key={h.tKey} className="flex items-start gap-3 rounded-3xl bg-muted/50 p-3">
                   <CalendarDays className="mt-0.5 size-4 shrink-0 text-primary" />
                   <div className="min-w-0">
-                    <p className="truncate text-sm font-medium">{h.t}</p>
-                    <p className="text-[11px] text-muted-foreground">{h.d} · {h.s}</p>
+                    <p className="truncate text-sm font-medium">{t(h.tKey)}</p>
+                    <p className="text-[11px] text-muted-foreground">{t(h.dKey)} · {t(h.sKey)}</p>
                   </div>
                 </div>
               ))}

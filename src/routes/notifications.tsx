@@ -5,6 +5,7 @@ import { AppShell } from "@/components/AppShell";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { useApp } from "@/lib/app-state";
+import { useI18n } from "@/lib/i18n";
 
 export const Route = createFileRoute("/notifications")({
   head: () => ({
@@ -28,11 +29,12 @@ const ICONS = {
 
 function NotificationsPage() {
   const { notifications, markAllRead } = useApp();
+  const { t } = useI18n();
 
   return (
     <AppShell
-      title="Notifications"
-      subtitle={`${notifications.filter((n) => !n.read).length} non lues`}
+      title={t("notif.title")}
+      subtitle={`${notifications.filter((n) => !n.read).length} ${t("notif.unread")}`}
       action={
         <Button
           size="sm"
@@ -40,10 +42,10 @@ function NotificationsPage() {
           className="rounded-full"
           onClick={() => {
             markAllRead();
-            toast.success("Tout marqué comme lu");
+            toast.success(t("notif.toastAllRead"));
           }}
         >
-          <CheckCheck className="size-4" /> Tout lire
+          <CheckCheck className="size-4" /> {t("notif.markAllRead")}
         </Button>
       }
     >

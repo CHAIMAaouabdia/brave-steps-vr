@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { Download } from "lucide-react";
 import { monthlyProgress, pieData, radarData, weeklySessions } from "@/lib/mock-data";
+import { useI18n } from "@/lib/i18n";
 
 export const Route = createFileRoute("/progress")({
   head: () => ({
@@ -26,27 +27,28 @@ const COLORS = ["var(--primary)", "var(--emerald)", "var(--violet)", "var(--warn
 const tip = { borderRadius: 16, border: "1px solid var(--border)", background: "var(--card)" };
 
 function ProgressPage() {
+  const { t } = useI18n();
   return (
     <AppShell
-      title="Progression"
-      subtitle="Indicateurs cliniques simulés"
+      title={t("progress.title")}
+      subtitle={t("progress.subtitle")}
       action={
         <>
-          <Button size="sm" variant="outline" className="rounded-full" onClick={() => toast.success("Rapport PDF généré (simulation)")}>
-            <Download className="size-4" /> PDF
+          <Button size="sm" variant="outline" className="rounded-full" onClick={() => toast.success(t("progress.pdfGenerated"))}>
+            <Download className="size-4" /> {t("progress.pdf")}
           </Button>
-          <Button size="sm" variant="outline" className="rounded-full" onClick={() => toast.success("Export CSV téléchargé (simulation)")}>
-            CSV
+          <Button size="sm" variant="outline" className="rounded-full" onClick={() => toast.success(t("progress.csvExported"))}>
+            {t("progress.csv")}
           </Button>
         </>
       }
     >
       <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
         {[
-          { l: "Taux de complétion", v: "78%" },
-          { l: "Taux de réussite", v: "91%" },
-          { l: "Durée moyenne", v: "12 min" },
-          { l: "Satisfaction", v: "4.8/5" },
+          { l: t("progress.completionRate"), v: "78%" },
+          { l: t("progress.successRate"), v: "91%" },
+          { l: t("progress.avgDuration"), v: "12 min" },
+          { l: t("progress.satisfaction"), v: "4.8/5" },
         ].map((k) => (
           <Card key={k.l} className="hover-lift rounded-4xl border-none shadow-soft">
             <CardContent className="p-5">
@@ -58,7 +60,7 @@ function ProgressPage() {
       </div>
 
       <div className="mt-5 grid gap-5 lg:grid-cols-2">
-        <ChartCard title="Sessions hebdomadaires">
+        <ChartCard title={t("progress.weeklySessions")}>
           <BarChart data={weeklySessions}>
             <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" />
             <XAxis dataKey="day" fontSize={12} stroke="var(--muted-foreground)" />
@@ -68,7 +70,7 @@ function ProgressPage() {
           </BarChart>
         </ChartCard>
 
-        <ChartCard title="Sessions mensuelles & complétion">
+        <ChartCard title={t("progress.monthlySessions")}>
           <LineChart data={monthlyProgress}>
             <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" />
             <XAxis dataKey="month" fontSize={12} stroke="var(--muted-foreground)" />
@@ -80,7 +82,7 @@ function ProgressPage() {
           </LineChart>
         </ChartCard>
 
-        <ChartCard title="Évolution du stress et de l'humeur">
+        <ChartCard title={t("progress.stressMoodEvolution")}>
           <LineChart data={weeklySessions}>
             <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" />
             <XAxis dataKey="day" fontSize={12} stroke="var(--muted-foreground)" />
@@ -92,7 +94,7 @@ function ProgressPage() {
           </LineChart>
         </ChartCard>
 
-        <ChartCard title="Évolution de la peur (SUD)">
+        <ChartCard title={t("progress.fearEvolution")}>
           <LineChart data={monthlyProgress}>
             <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" />
             <XAxis dataKey="month" fontSize={12} stroke="var(--muted-foreground)" />
@@ -102,7 +104,7 @@ function ProgressPage() {
           </LineChart>
         </ChartCard>
 
-        <ChartCard title="Compétences psycho-émotionnelles">
+        <ChartCard title={t("progress.psychoSkills")}>
           <RadarChart data={radarData} outerRadius="75%">
             <PolarGrid stroke="var(--border)" />
             <PolarAngleAxis dataKey="axis" fontSize={12} stroke="var(--muted-foreground)" />
@@ -111,7 +113,7 @@ function ProgressPage() {
           </RadarChart>
         </ChartCard>
 
-        <ChartCard title="Répartition des sessions">
+        <ChartCard title={t("progress.sessionDistribution")}>
           <PieChart>
             <Pie data={pieData} dataKey="value" nameKey="name" innerRadius={55} outerRadius={95} paddingAngle={4}>
               {pieData.map((_, i) => (
@@ -127,7 +129,7 @@ function ProgressPage() {
   );
 }
 
-function ChartCard({ title, children }: { title: string; children: React.ReactElement }) {
+function ChartCard({ title, children }: { title: React.ReactNode; children: React.ReactElement }) {
   return (
     <Card className="rounded-4xl border-none shadow-soft">
       <CardContent className="p-6">

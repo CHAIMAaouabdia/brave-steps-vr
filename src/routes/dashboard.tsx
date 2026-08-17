@@ -30,6 +30,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { useApp } from "@/lib/app-state";
+import { useI18n } from "@/lib/i18n";
 import { ACHIEVEMENTS, LEVELS, weeklySessions } from "@/lib/mock-data";
 
 export const Route = createFileRoute("/dashboard")({
@@ -46,17 +47,18 @@ export const Route = createFileRoute("/dashboard")({
 
 function Dashboard() {
   const { user, progress, level, moods, addMood } = useApp();
+  const { t } = useI18n();
   const current = LEVELS[Math.min(level - 1, 9)]!;
   const completion = Math.round((progress.completed.length / LEVELS.length) * 100);
 
   return (
     <AppShell
-      title={`Bonjour ${user?.firstName ?? "Yasmine"} 👋`}
-      subtitle="Voici votre parcours thérapeutique aujourd'hui"
+      title={t("dash.hello", { name: user?.firstName ?? "Yasmine" })}
+      subtitle={t("dash.subtitle")}
       action={
         <Button asChild size="sm" className="gradient-primary hidden rounded-full sm:inline-flex">
           <Link to="/therapy">
-            <Play className="size-4" /> Continuer
+            <Play className="size-4" /> {t("dash.continue")}
           </Link>
         </Button>
       }
@@ -64,42 +66,42 @@ function Dashboard() {
       <div className="grid gap-5 xl:grid-cols-3">
         <Card className="hover-lift overflow-hidden rounded-4xl border-none shadow-soft xl:col-span-2">
           <CardContent className="gradient-hero p-6 sm:p-8">
-            <Badge className="rounded-full bg-card text-foreground hover:bg-card">Mission du jour</Badge>
+            <Badge className="rounded-full bg-card text-foreground hover:bg-card">{t("dash.missionOfDay")}</Badge>
             <h2 className="mt-4 text-2xl font-extrabold sm:text-3xl">{current.mission}</h2>
             <p className="mt-2 max-w-xl text-sm text-muted-foreground">{current.description}</p>
             <div className="mt-5 flex flex-wrap gap-2">
-              <Badge variant="secondary" className="rounded-full">Niveau {current.id}</Badge>
+              <Badge variant="secondary" className="rounded-full">{t("dash.level")} {current.id}</Badge>
               <Badge variant="secondary" className="rounded-full">{current.difficulty}</Badge>
-              <Badge variant="secondary" className="rounded-full">{current.duration} min</Badge>
+              <Badge variant="secondary" className="rounded-full">{current.duration} {t("common.min")}</Badge>
               <Badge variant="secondary" className="rounded-full">+{current.xp} XP</Badge>
             </div>
             <Button asChild className="gradient-primary mt-6 rounded-2xl px-6 shadow-float">
               <Link to="/session/$levelId" params={{ levelId: String(current.id) }}>
-                <Play className="size-4" /> Démarrer la session
+                <Play className="size-4" /> {t("dash.startSession")}
               </Link>
             </Button>
           </CardContent>
         </Card>
 
         <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-1">
-          <Stat icon={Trophy} label="Niveau actuel" value={`Niveau ${level}`} hint={`${completion}% du parcours`} />
-          <Stat icon={Zap} label="Expérience" value={`${progress.xp} XP`} hint={`${progress.coins} pièces`} />
+          <Stat icon={Trophy} label={t("dash.currentLevel")} value={`${t("dash.level")} ${level}`} hint={t("dash.pctOfJourney", { pct: completion })} />
+          <Stat icon={Zap} label={t("dash.experience")} value={`${progress.xp} XP`} hint={`${progress.coins} ${t("dash.coins")}`} />
         </div>
       </div>
 
       <div className="mt-5 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-        <Stat icon={Target} label="Sessions totales" value={String(progress.sessions)} hint="+3 cette semaine" />
-        <Stat icon={Flame} label="Série en cours" value={`${progress.streak} jours`} hint="Record : 9 jours" />
-        <Stat icon={Coins} label="Pièces" value={String(progress.coins)} hint="Boutique de récompenses" />
-        <Stat icon={Award} label="Succès" value={`${ACHIEVEMENTS.filter((a) => a.unlocked).length}/${ACHIEVEMENTS.length}`} hint="2 en cours" />
+        <Stat icon={Target} label={t("dash.totalSessions")} value={String(progress.sessions)} hint={t("dash.thisWeek")} />
+        <Stat icon={Flame} label={t("dash.streak")} value={`${progress.streak} ${t("dash.days")}`} hint={t("dash.record")} />
+        <Stat icon={Coins} label={t("dash.coinsLabel")} value={String(progress.coins)} hint={t("dash.rewardShop")} />
+        <Stat icon={Award} label={t("dash.achievements")} value={`${ACHIEVEMENTS.filter((a) => a.unlocked).length}/${ACHIEVEMENTS.length}`} hint={t("dash.inProgress2")} />
       </div>
 
       <div className="mt-5 grid gap-5 lg:grid-cols-3">
         <Card className="rounded-4xl border-none shadow-soft lg:col-span-2">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
-              <h3 className="font-bold">Progression hebdomadaire</h3>
-              <Badge variant="secondary" className="rounded-full">7 derniers jours</Badge>
+              <h3 className="font-bold">{t("dash.weeklyProgress")}</h3>
+              <Badge variant="secondary" className="rounded-full">{t("dash.last7Days")}</Badge>
             </div>
             <div className="mt-4 h-64">
               <ResponsiveContainer width="100%" height="100%">
@@ -123,7 +125,7 @@ function Dashboard() {
 
         <Card className="rounded-4xl border-none shadow-soft">
           <CardContent className="p-6">
-            <h3 className="font-bold">Progression thérapeutique</h3>
+            <h3 className="font-bold">{t("dash.therapyProgress")}</h3>
             <div className="mt-6 flex justify-center">
               <ProgressCircle value={completion} />
             </div>
@@ -148,14 +150,14 @@ function Dashboard() {
       <div className="mt-5 grid gap-5 lg:grid-cols-3">
         <Card className="rounded-4xl border-none shadow-soft">
           <CardContent className="p-6">
-            <h3 className="font-bold">Humeur du jour</h3>
+            <h3 className="font-bold">{t("dash.moodOfDay")}</h3>
             <div className="mt-4 flex justify-between gap-2">
               {["😊", "😐", "😢", "😨", "😴"].map((m) => (
                 <button
                   key={m}
                   onClick={() => {
-                    addMood(m, "Enregistré depuis le tableau de bord");
-                    toast.success("Humeur enregistrée");
+                    addMood(m, t("dash.moodFromDashboard"));
+                    toast.success(t("dash.moodRecorded"));
                   }}
                   className="grid size-12 place-items-center rounded-2xl border bg-card text-2xl transition-all hover:-translate-y-1 hover:shadow-soft"
                 >
@@ -179,7 +181,7 @@ function Dashboard() {
 
         <Card className="rounded-4xl border-none shadow-soft">
           <CardContent className="p-6">
-            <h3 className="font-bold">Stress vs humeur</h3>
+            <h3 className="font-bold">{t("dash.stressVsMood")}</h3>
             <div className="mt-4 h-52">
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={weeklySessions}>
@@ -197,23 +199,23 @@ function Dashboard() {
         <div className="space-y-5">
           <Card className="rounded-4xl border-none shadow-soft">
             <CardContent className="p-6">
-              <h3 className="font-bold">Dernière session</h3>
-              <p className="mt-2 text-sm text-muted-foreground">Niveau 3 · Pluie d'étoiles</p>
-              <p className="text-xs text-muted-foreground">Hier, 18:20 · 9 min · stress final 3/10</p>
+              <h3 className="font-bold">{t("dash.lastSession")}</h3>
+              <p className="mt-2 text-sm text-muted-foreground">{t("dash.lastSessionDetail")}</p>
+              <p className="text-xs text-muted-foreground">{t("dash.lastSessionTime")}</p>
               <div className="mt-4 border-t pt-4">
-                <h3 className="font-bold">Prochain rendez-vous</h3>
+                <h3 className="font-bold">{t("dash.nextAppointment")}</h3>
                 <p className="mt-2 flex items-center gap-2 text-sm">
-                  <CalendarDays className="size-4 text-primary" /> Vendredi 14:30 — Dr. Rahmani
+                  <CalendarDays className="size-4 text-primary" /> {t("dash.nextAppointmentDetail")}
                 </p>
               </div>
             </CardContent>
           </Card>
           <Card className="rounded-4xl border-none shadow-soft">
             <CardContent className="grid grid-cols-2 gap-3 p-6">
-              <QuickAction to="/therapy" icon={Play} label="Continuer" />
-              <QuickAction to="/progress" icon={LineIcon} label="Statistiques" />
-              <QuickAction to="/ai" icon={BrainCircuit} label="Chat IA" />
-              <QuickAction to="/messages" icon={MessageSquare} label="Messages" />
+              <QuickAction to="/therapy" icon={Play} label={t("dash.quickContinue")} />
+              <QuickAction to="/progress" icon={LineIcon} label={t("dash.quickStats")} />
+              <QuickAction to="/ai" icon={BrainCircuit} label={t("dash.quickAiChat")} />
+              <QuickAction to="/messages" icon={MessageSquare} label={t("dash.quickMessages")} />
             </CardContent>
           </Card>
         </div>
@@ -221,7 +223,7 @@ function Dashboard() {
 
       <Card className="mt-5 rounded-4xl border-none shadow-soft">
         <CardContent className="p-6">
-          <h3 className="font-bold">Succès</h3>
+          <h3 className="font-bold">{t("dash.achievements")}</h3>
           <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {ACHIEVEMENTS.map((a) => (
               <div
@@ -280,6 +282,7 @@ function QuickAction({ to, icon: Icon, label }: { to: string; icon: React.Elemen
 }
 
 export function ProgressCircle({ value, size = 140 }: { value: number; size?: number }) {
+  const { t } = useI18n();
   const r = size / 2 - 10;
   const c = 2 * Math.PI * r;
   return (
@@ -302,7 +305,7 @@ export function ProgressCircle({ value, size = 140 }: { value: number; size?: nu
       <div className="absolute inset-0 grid place-items-center">
         <div className="text-center">
           <p className="text-2xl font-extrabold">{value}%</p>
-          <p className="text-[11px] text-muted-foreground">complété</p>
+          <p className="text-[11px] text-muted-foreground">{t("dash.completedPercent")}</p>
         </div>
       </div>
     </div>

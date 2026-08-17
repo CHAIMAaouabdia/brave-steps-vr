@@ -1,3 +1,27 @@
 import type { Dict } from "./types";
 
-export const calendarDict: Dict = {};
+export const calendarDict: Dict = {
+  "cal.title": ["Calendrier", "Calendar", "التقويم"],
+  "cal.subtitle": ["Séances et rendez-vous", "Sessions and appointments", "الجلسات والمواعيد"],
+  "cal.appointment": ["Rendez-vous", "Appointment", "موعد"],
+  "cal.toastRequested": ["Rendez-vous demandé (simulation)", "Appointment requested (simulation)", "تم طلب موعد (محاكاة)"],
+  "cal.upcoming": ["À venir", "Upcoming", "القادمة"],
+  "cal.history": ["Historique", "History", "السجل"],
+  "cal.visio": ["Visio", "Video call", "مكالمة فيديو"],
+  "cal.vr": ["VR", "VR", "واقع افتراضي"],
+  "cal.up1.d": ["Ven. 7 août · 14:30", "Fri, Aug 7 · 2:30 PM", "الجمعة 7 أوت · 14:30"],
+  "cal.up1.t": ["Consultation Dr. Rahmani", "Consultation with Dr. Rahmani", "استشارة الدكتورة رحماني"],
+  "cal.up2.d": ["Lun. 10 août · 18:00", "Mon, Aug 10 · 6:00 PM", "الإثنين 10 أوت · 18:00"],
+  "cal.up2.t": ["Session niveau 5 — Le pont suspendu", "Level 5 session — The suspended bridge", "جلسة المستوى 5 — الجسر المعلق"],
+  "cal.up3.d": ["Mer. 12 août · 17:30", "Wed, Aug 12 · 5:30 PM", "الأربعاء 12 أوت · 17:30"],
+  "cal.up3.t": ["Session niveau 6 — Vers la lumière", "Level 6 session — Towards the light", "جلسة المستوى 6 — نحو النور"],
+  "cal.h1.d": ["4 août · 18:20", "Aug 4 · 6:20 PM", "4 أوت · 18:20"],
+  "cal.h1.t": ["Niveau 3 — Pluie d'étoiles", "Level 3 — Shower of stars", "المستوى 3 — وابل النجوم"],
+  "cal.h1.s": ["Réussie · 9 min", "Successful · 9 min", "ناجحة · 9 د"],
+  "cal.h2.d": ["2 août · 19:05", "Aug 2 · 7:05 PM", "2 أوت · 19:05"],
+  "cal.h2.t": ["Niveau 2 — Les clés du calme", "Level 2 — Keys of calm", "المستوى 2 — مفاتيح الهدوء"],
+  "cal.h2.s": ["Réussie · 8 min", "Successful · 8 min", "ناجحة · 8 د"],
+  "cal.h3.d": ["31 juil. · 17:40", "Jul 31 · 5:40 PM", "31 يوليو · 17:40"],
+  "cal.h3.t": ["Niveau 1 — Premier souffle", "Level 1 — First breath", "المستوى 1 — النفس الأول"],
+  "cal.h3.s": ["Réussie · 6 min", "Successful · 6 min", "ناجحة · 6 د"],
+};

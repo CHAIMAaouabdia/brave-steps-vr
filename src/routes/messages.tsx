@@ -6,6 +6,7 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import { useI18n } from "@/lib/i18n";
 
 export const Route = createFileRoute("/messages")({
   head: () => ({
@@ -20,39 +21,40 @@ export const Route = createFileRoute("/messages")({
 });
 
 const THREADS = [
-  { id: "t1", name: "Dr. Amina Rahmani", last: "Bravo pour la session d'hier !", initials: "AR" },
-  { id: "t2", name: "Support G_Phob", last: "Votre casque est bien configuré.", initials: "GP" },
-  { id: "t3", name: "Coach Karim", last: "On se voit vendredi ?", initials: "CK" },
+  { id: "t1", nameKey: "msg.t1.name", lastKey: "msg.t1.last", initials: "AR" },
+  { id: "t2", nameKey: "msg.t2.name", lastKey: "msg.t2.last", initials: "GP" },
+  { id: "t3", nameKey: "msg.t3.name", lastKey: "msg.t3.last", initials: "CK" },
 ];
 
 function MessagesPage() {
+  const { t } = useI18n();
   const [active, setActive] = useState(THREADS[0]!);
   const [msgs, setMsgs] = useState([
-    { id: 1, me: false, text: "Bonjour Yasmine, comment s'est passée la session ?" },
-    { id: 2, me: true, text: "Beaucoup mieux, mon stress est descendu à 3/10 !" },
-    { id: 3, me: false, text: "Bravo pour la session d'hier ! On passe au niveau 4 vendredi." },
+    { id: 1, me: false, text: t("msg.m1") },
+    { id: 2, me: true, text: t("msg.m2") },
+    { id: 3, me: false, text: t("msg.m3") },
   ]);
   const [input, setInput] = useState("");
 
   return (
-    <AppShell title="Messages" subtitle="Messagerie simulée">
+    <AppShell title={t("msg.title")} subtitle={t("msg.subtitle")}>
       <div className="grid gap-5 lg:grid-cols-[300px_minmax(0,1fr)]">
         <Card className="rounded-4xl border-none shadow-soft">
           <CardContent className="p-3">
-            {THREADS.map((t) => (
+            {THREADS.map((th) => (
               <button
-                key={t.id}
-                onClick={() => setActive(t)}
+                key={th.id}
+                onClick={() => setActive(th)}
                 className={`flex w-full items-center gap-3 rounded-3xl p-3 text-start transition-colors ${
-                  active.id === t.id ? "bg-muted" : "hover:bg-muted/60"
+                  active.id === th.id ? "bg-muted" : "hover:bg-muted/60"
                 }`}
               >
                 <Avatar className="size-10">
-                  <AvatarFallback className="gradient-calm text-xs font-bold text-primary-foreground">{t.initials}</AvatarFallback>
+                  <AvatarFallback className="gradient-calm text-xs font-bold text-primary-foreground">{th.initials}</AvatarFallback>
                 </Avatar>
                 <div className="min-w-0">
-                  <p className="truncate text-sm font-semibold">{t.name}</p>
-                  <p className="truncate text-xs text-muted-foreground">{t.last}</p>
+                  <p className="truncate text-sm font-semibold">{t(th.nameKey)}</p>
+                  <p className="truncate text-xs text-muted-foreground">{t(th.lastKey)}</p>
                 </div>
               </button>
             ))}
@@ -61,7 +63,7 @@ function MessagesPage() {
 
         <Card className="rounded-4xl border-none shadow-soft">
           <CardContent className="flex h-[60vh] flex-col p-0">
-            <div className="border-b p-4 font-bold">{active.name}</div>
+            <div className="border-b p-4 font-bold">{t(active.nameKey)}</div>
             <div className="flex-1 space-y-3 overflow-y-auto p-4">
               {msgs.map((m) => (
                 <div key={m.id} className={`flex ${m.me ? "justify-end" : "justify-start"}`}>
@@ -80,7 +82,7 @@ function MessagesPage() {
                 setInput("");
               }}
             >
-              <Input value={input} onChange={(e) => setInput(e.target.value)} placeholder="Votre message…" className="rounded-2xl" />
+              <Input value={input} onChange={(e) => setInput(e.target.value)} placeholder={t("msg.placeholder")} className="rounded-2xl" />
               <Button type="submit" size="icon" className="gradient-primary size-10 shrink-0 rounded-2xl">
                 <Send className="size-4" />
               </Button>

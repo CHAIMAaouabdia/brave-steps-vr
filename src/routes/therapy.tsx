@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { useApp } from "@/lib/app-state";
+import { useI18n } from "@/lib/i18n";
 import { LEVELS } from "@/lib/mock-data";
 import forestImg from "@/assets/scene-forest.jpg";
 import mountainImg from "@/assets/scene-mountain.jpg";
@@ -24,29 +25,30 @@ export const Route = createFileRoute("/therapy")({
 
 function TherapyPage() {
   const { progress, level } = useApp();
+  const { t } = useI18n();
 
   return (
-    <AppShell title="Parcours d'exposition" subtitle="10 niveaux calibrés par l'IA selon votre profil">
+    <AppShell title={t("therapy.title")} subtitle={t("therapy.subtitle")}>
       <div className="grid gap-5 sm:grid-cols-3">
         <Card className="rounded-4xl border-none shadow-soft">
           <CardContent className="p-5">
-            <p className="text-xs text-muted-foreground">Niveaux terminés</p>
+            <p className="text-xs text-muted-foreground">{t("therapy.completedLevels")}</p>
             <p className="text-2xl font-bold">{progress.completed.length}/10</p>
             <Progress value={progress.completed.length * 10} className="mt-3 h-2" />
           </CardContent>
         </Card>
         <Card className="rounded-4xl border-none shadow-soft">
           <CardContent className="p-5">
-            <p className="text-xs text-muted-foreground">Prochain palier</p>
+            <p className="text-xs text-muted-foreground">{t("therapy.nextStep")}</p>
             <p className="truncate text-2xl font-bold">{LEVELS[Math.min(level - 1, 9)]!.title}</p>
-            <p className="text-xs text-muted-foreground">Difficulté {LEVELS[Math.min(level - 1, 9)]!.difficulty}</p>
+            <p className="text-xs text-muted-foreground">{t("therapy.difficulty", { d: LEVELS[Math.min(level - 1, 9)]!.difficulty })}</p>
           </CardContent>
         </Card>
         <Card className="rounded-4xl border-none shadow-soft">
           <CardContent className="p-5">
-            <p className="text-xs text-muted-foreground">Récompenses cumulées</p>
+            <p className="text-xs text-muted-foreground">{t("therapy.cumulatedRewards")}</p>
             <p className="text-2xl font-bold">{progress.xp} XP</p>
-            <p className="text-xs text-muted-foreground">{progress.coins} pièces · 4 badges</p>
+            <p className="text-xs text-muted-foreground">{t("therapy.coinsBadges", { coins: progress.coins })}</p>
           </CardContent>
         </Card>
       </div>
@@ -64,12 +66,12 @@ function TherapyPage() {
                   loading="lazy"
                   width={1600}
                   height={900}
-                  alt={`Scène ${l.mission}`}
+                  alt={t("therapy.scene", { mission: l.mission })}
                   className="size-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-card via-card/30 to-transparent" />
                 <Badge className="absolute start-3 top-3 rounded-full bg-card text-foreground hover:bg-card">
-                  Niveau {l.id}
+                  {t("therapy.level", { id: l.id })}
                 </Badge>
                 {completed && (
                   <span className="absolute end-3 top-3 grid size-8 place-items-center rounded-full bg-emerald text-emerald-foreground">
@@ -88,7 +90,7 @@ function TherapyPage() {
                 <p className="mt-2 line-clamp-2 text-sm text-muted-foreground">{l.description}</p>
                 <div className="mt-3 flex flex-wrap gap-2 text-[11px]">
                   <Badge variant="secondary" className="rounded-full">{l.difficulty}</Badge>
-                  <Badge variant="secondary" className="rounded-full"><Clock className="me-1 size-3" />{l.duration} min</Badge>
+                  <Badge variant="secondary" className="rounded-full"><Clock className="me-1 size-3" />{l.duration} {t("therapy.minutes")}</Badge>
                   <Badge variant="secondary" className="rounded-full"><Sparkles className="me-1 size-3" />+{l.xp} XP</Badge>
                 </div>
                 <ul className="mt-3 space-y-1">
@@ -108,10 +110,10 @@ function TherapyPage() {
                   className={`mt-4 w-full rounded-2xl ${locked ? "" : "gradient-primary"}`}
                 >
                   {locked ? (
-                    <span><Lock className="size-4" /> Verrouillé</span>
+                    <span><Lock className="size-4" /> {t("therapy.locked")}</span>
                   ) : (
                     <Link to="/session/$levelId" params={{ levelId: String(l.id) }}>
-                      <Play className="size-4" /> {completed ? "Rejouer" : "Démarrer la session"}
+                      <Play className="size-4" /> {completed ? t("therapy.replay") : t("therapy.startSession")}
                     </Link>
                   )}
                 </Button>
