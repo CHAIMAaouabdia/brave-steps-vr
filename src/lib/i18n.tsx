@@ -238,8 +238,11 @@ const T: Dict = {
 type I18nCtx = {
   lang: Lang;
   setLang: (l: Lang) => void;
-  t: (key: string) => string;
+  /** t("key") or t("key", { name: "Yasmine" }) replacing {name} placeholders */
+  t: (key: string, vars?: Record<string, string | number>) => string;
   dir: "ltr" | "rtl";
+  /** picks the right value from a [fr, en, ar] tuple or a {fr,en,ar} object */
+  pick: <V>(v: [V, V, V] | { fr: V; en: V; ar: V }) => V;
 };
 
 const idx: Record<Lang, 0 | 1 | 2> = { fr: 0, en: 1, ar: 2 };
