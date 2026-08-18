@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { useApp } from "@/lib/app-state";
+import { useI18n } from "@/lib/i18n";
 import { ACHIEVEMENTS, FEARS, LEVELS } from "@/lib/mock-data";
 
 export const Route = createFileRoute("/profile")({
@@ -22,6 +23,7 @@ export const Route = createFileRoute("/profile")({
 });
 
 function ProfilePage() {
+  const { t } = useI18n();
   const { user, assessment, progress, level } = useApp();
   const fearScore = assessment?.intensity ?? 7;
   const completion = Math.round((progress.completed.length / LEVELS.length) * 100);
@@ -30,7 +32,7 @@ function ProfilePage() {
   );
 
   return (
-    <AppShell title="Profil thérapeutique" subtitle="Généré automatiquement par le moteur d'analyse G_Phob">
+    <AppShell title={t("prof.title")} subtitle={t("prof.subtitle")}>
       <div className="grid gap-5 lg:grid-cols-3">
         <Card className="rounded-4xl border-none shadow-soft">
           <CardContent className="p-6 text-center">
@@ -41,7 +43,7 @@ function ProfilePage() {
               {user ? `${user.firstName} ${user.lastName}` : "Yasmine Belkacem"}
             </h2>
             <p className="text-sm text-muted-foreground">
-              {user?.age ?? 12} ans · {user?.country ?? "France"}
+              {user?.age ?? 12} {t("prof.yearsOld")} · {user?.country ?? "France"}
             </p>
             <div className="mt-4 flex flex-wrap justify-center gap-2">
               {fearLabels.map((f) => (
@@ -49,7 +51,7 @@ function ProfilePage() {
               ))}
             </div>
             <div className="mt-6 rounded-3xl bg-muted/60 p-4 text-start">
-              <p className="text-xs text-muted-foreground">Contact d'urgence</p>
+              <p className="text-xs text-muted-foreground">{t("prof.emergencyContact")}</p>
               <p className="text-sm font-medium">{user?.emergency ?? "Sarah Belkacem · +33 6 12 34 56 78"}</p>
             </div>
           </CardContent>
@@ -57,17 +59,22 @@ function ProfilePage() {
 
         <Card className="rounded-4xl border-none shadow-soft lg:col-span-2">
           <CardContent className="grid gap-5 p-6 sm:grid-cols-2">
-            <Metric icon={Target} label="Niveau actuel" value={`Niveau ${level}`} tone="primary" />
-            <Metric icon={ShieldAlert} label="Niveau de risque" value={fearScore >= 8 ? "Élevé" : fearScore >= 5 ? "Modéré" : "Faible"} tone="warning" />
-            <Metric icon={Brain} label="Score de peur" value={`${fearScore}/10`} tone="violet" />
-            <Metric icon={HeartPulse} label="Score de motivation" value="88/100" tone="emerald" />
+            <Metric icon={Target} label={t("prof.currentLevel")} value={`${t("prof.level")} ${level}`} tone="primary" />
+            <Metric
+              icon={ShieldAlert}
+              label={t("prof.riskLevel")}
+              value={fearScore >= 8 ? t("prof.riskHigh") : fearScore >= 5 ? t("prof.riskModerate") : t("prof.riskLow")}
+              tone="warning"
+            />
+            <Metric icon={Brain} label={t("prof.fearScore")} value={`${fearScore}/10`} tone="violet" />
+            <Metric icon={HeartPulse} label={t("prof.motivationScore")} value="88/100" tone="emerald" />
             <div className="sm:col-span-2">
-              <p className="text-xs text-muted-foreground">Difficulté d'exposition recommandée</p>
+              <p className="text-xs text-muted-foreground">{t("prof.recommendedDifficulty")}</p>
               <Progress value={fearScore * 10} className="mt-2 h-2.5" />
-              <p className="mt-2 text-sm">
-                Thérapie recommandée : <strong>exposition graduelle TCC en 10 paliers</strong>, 3
-                sessions hebdomadaires de 10 à 20 minutes, avec régulation respiratoire intégrée.
-              </p>
+              <p
+                className="mt-2 text-sm"
+                dangerouslySetInnerHTML={{ __html: t("prof.recommendedTherapy") }}
+              />
             </div>
           </CardContent>
         </Card>
@@ -76,10 +83,10 @@ function ProfilePage() {
       <div className="mt-5 grid gap-5 lg:grid-cols-3">
         <Card className="rounded-4xl border-none shadow-soft">
           <CardContent className="flex flex-col items-center p-6">
-            <h3 className="font-bold">Progression globale</h3>
+            <h3 className="font-bold">{t("prof.globalProgress")}</h3>
             <div className="mt-4"><ProgressCircle value={completion} /></div>
             <p className="mt-4 text-center text-xs text-muted-foreground">
-              {progress.completed.length} niveaux terminés sur 10 · {progress.sessions} sessions
+              {t("prof.levelsCompleted", { done: progress.completed.length, sessions: progress.sessions })}
             </p>
           </CardContent>
         </Card>
@@ -88,14 +95,14 @@ function ProfilePage() {
           <CardContent className="p-6">
             <div className="flex items-center gap-2">
               <Sparkles className="size-4 text-primary" />
-              <h3 className="font-bold">Recommandations générées par l'IA</h3>
+              <h3 className="font-bold">{t("prof.aiReco")}</h3>
             </div>
             <ul className="mt-4 space-y-3 text-sm">
               {[
-                `Poursuivre l'exposition « ${LEVELS[Math.min(level - 1, 9)]!.mission} » avec une intensité réduite de 15%.`,
-                "Ajouter un exercice de cohérence cardiaque de 3 minutes avant chaque session.",
-                "Planifier les sessions en fin de journée : meilleure adhérence observée (+22%).",
-                `Univers personnalisé recommandé : ${assessment?.animal ?? "chat"}, couleur ${assessment?.color ?? "bleu"}.`,
+                t("prof.reco1", { mission: LEVELS[Math.min(level - 1, 9)]!.mission }),
+                t("prof.reco2"),
+                t("prof.reco3"),
+                t("prof.reco4", { animal: assessment?.animal ?? "chat", color: assessment?.color ?? "bleu" }),
               ].map((r) => (
                 <li key={r} className="flex items-start gap-3 rounded-3xl bg-muted/50 p-3">
                   <Activity className="mt-0.5 size-4 shrink-0 text-primary" /> {r}
@@ -103,7 +110,7 @@ function ProfilePage() {
               ))}
             </ul>
             <Button asChild className="gradient-primary mt-5 rounded-2xl">
-              <Link to="/therapy">Continuer la thérapie</Link>
+              <Link to="/therapy">{t("prof.continueTherapy")}</Link>
             </Button>
           </CardContent>
         </Card>
@@ -111,7 +118,7 @@ function ProfilePage() {
 
       <Card className="mt-5 rounded-4xl border-none shadow-soft">
         <CardContent className="p-6">
-          <h3 className="font-bold">Succès débloqués</h3>
+          <h3 className="font-bold">{t("prof.achievements")}</h3>
           <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {ACHIEVEMENTS.map((a) => (
               <div key={a.id} className={`rounded-3xl border p-4 ${a.unlocked ? "shadow-soft" : "opacity-55"}`}>

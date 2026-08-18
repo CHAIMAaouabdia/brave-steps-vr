@@ -23,18 +23,18 @@ export const Route = createFileRoute("/settings")({
 
 function SettingsPage() {
   const { theme, setTheme, user } = useApp();
-  const { lang, setLang } = useI18n();
+  const { t, lang, setLang } = useI18n();
 
   return (
-    <AppShell title="Paramètres" subtitle="Préférences du compte">
+    <AppShell title={t("set.title")} subtitle={t("set.subtitle")}>
       <div className="grid gap-5 lg:grid-cols-2">
         <Card className="rounded-4xl border-none shadow-soft">
           <CardContent className="space-y-4 p-6">
-            <h3 className="font-bold">Apparence</h3>
-            <Row label="Mode sombre">
+            <h3 className="font-bold">{t("set.appearance")}</h3>
+            <Row label={t("set.darkMode")}>
               <Switch checked={theme === "dark"} onCheckedChange={(c) => setTheme(c ? "dark" : "light")} />
             </Row>
-            <Row label="Langue">
+            <Row label={t("set.language")}>
               <div className="flex gap-1">
                 {(["fr", "en", "ar"] as Lang[]).map((l) => (
                   <Button
@@ -54,31 +54,37 @@ function SettingsPage() {
 
         <Card className="rounded-4xl border-none shadow-soft">
           <CardContent className="space-y-4 p-6">
-            <h3 className="font-bold">Profil</h3>
+            <h3 className="font-bold">{t("set.profile")}</h3>
             <div className="grid gap-3 sm:grid-cols-2">
               <div className="space-y-1.5">
-                <Label className="text-xs">Prénom</Label>
+                <Label className="text-xs">{t("set.firstName")}</Label>
                 <Input defaultValue={user?.firstName ?? "Yasmine"} className="rounded-2xl" />
               </div>
               <div className="space-y-1.5">
-                <Label className="text-xs">Nom</Label>
+                <Label className="text-xs">{t("set.lastName")}</Label>
                 <Input defaultValue={user?.lastName ?? "Belkacem"} className="rounded-2xl" />
               </div>
             </div>
             <div className="space-y-1.5">
-              <Label className="text-xs">Email</Label>
+              <Label className="text-xs">{t("set.email")}</Label>
               <Input defaultValue={user?.email ?? "yasmine@gphob.io"} className="rounded-2xl" />
             </div>
-            <Button className="gradient-primary rounded-2xl" onClick={() => toast.success("Profil mis à jour")}>
-              Enregistrer
+            <Button className="gradient-primary rounded-2xl" onClick={() => toast.success(t("set.profileUpdated"))}>
+              {t("set.save")}
             </Button>
           </CardContent>
         </Card>
 
         <Card className="rounded-4xl border-none shadow-soft">
           <CardContent className="space-y-4 p-6">
-            <h3 className="font-bold">Notifications</h3>
-            {["Rappels quotidiens", "Sessions terminées", "Succès débloqués", "Rendez-vous", "Citations motivantes"].map((n) => (
+            <h3 className="font-bold">{t("set.notifications")}</h3>
+            {[
+              t("set.notif.daily"),
+              t("set.notif.sessions"),
+              t("set.notif.achievements"),
+              t("set.notif.appointments"),
+              t("set.notif.quotes"),
+            ].map((n) => (
               <Row key={n} label={n}><Switch defaultChecked /></Row>
             ))}
           </CardContent>
@@ -86,13 +92,13 @@ function SettingsPage() {
 
         <Card className="rounded-4xl border-none shadow-soft">
           <CardContent className="space-y-4 p-6">
-            <h3 className="font-bold">Sécurité & accessibilité</h3>
-            <Row label="Authentification à deux facteurs"><Switch /></Row>
-            <Row label="Texte agrandi"><Switch /></Row>
-            <Row label="Réduire les animations"><Switch /></Row>
-            <Row label="Mode enfant simplifié"><Switch defaultChecked /></Row>
-            <Button variant="outline" className="rounded-2xl" onClick={() => toast.success("Email de changement de mot de passe envoyé")}>
-              Changer le mot de passe
+            <h3 className="font-bold">{t("set.securityAccessibility")}</h3>
+            <Row label={t("set.twoFactor")}><Switch /></Row>
+            <Row label={t("set.largeText")}><Switch /></Row>
+            <Row label={t("set.reduceMotion")}><Switch /></Row>
+            <Row label={t("set.childMode")}><Switch defaultChecked /></Row>
+            <Button variant="outline" className="rounded-2xl" onClick={() => toast.success(t("set.passwordEmailSent"))}>
+              {t("set.changePassword")}
             </Button>
           </CardContent>
         </Card>

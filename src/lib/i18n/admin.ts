@@ -31,4 +31,7 @@ export const adminDict: Dict = {
   "adm.log3": ["Alerte risque élevé détectée — patient p3", "High risk alert detected — patient p3", "تم رصد تنبيه خطورة مرتفعة — المريض p3"],
   "adm.log4": ["Export de rapport clinique généré", "Clinical report export generated", "تم إنشاء تصدير تقرير سريري"],
   "adm.log5": ["Échec de synchronisation casque VR-08", "VR headset VR-08 sync failure", "فشل مزامنة سماعة الواقع الافتراضي VR-08"],
+  "adm.status.active": ["Actif", "Active", "نشط"],
+  "adm.status.paused": ["Pause", "Paused", "متوقف"],
+  "adm.status.done": ["Terminé", "Completed", "منتهٍ"],
 };

@@ -18,4 +18,11 @@ export const settingsDict: Dict = {
   "set.childMode": ["Mode enfant simplifié", "Simplified child mode", "الوضع المبسط للأطفال"],
   "set.changePassword": ["Changer le mot de passe", "Change password", "تغيير كلمة المرور"],
   "set.passwordEmailSent": ["Email de changement de mot de passe envoyé", "Password change email sent", "تم إرسال بريد تغيير كلمة المرور"],
+  "set.appearance": ["Apparence", "Appearance", "المظهر"],
+  "set.darkMode": ["Mode sombre", "Dark mode", "الوضع الداكن"],
+  "set.language": ["Langue", "Language", "اللغة"],
+  "set.profile": ["Profil", "Profile", "الملف الشخصي"],
+  "set.save": ["Enregistrer", "Save", "حفظ"],
+  "set.notifications": ["Notifications", "Notifications", "الإشعارات"],
+  "set.securityAccessibility": ["Sécurité & accessibilité", "Security & accessibility", "الأمان وإمكانية الوصول"],
 };
