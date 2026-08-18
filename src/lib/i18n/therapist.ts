@@ -28,4 +28,7 @@ export const therapistDict: Dict = {
   "ther.notesPlaceholder": ["Observations de séance…", "Session observations…", "ملاحظات الجلسة…"],
   "ther.saveNote": ["Enregistrer la note", "Save note", "حفظ الملاحظة"],
   "ther.noteSaved": ["Note enregistrée", "Note saved", "تم حفظ الملاحظة"],
+  "ther.risk.low": ["Faible", "Low", "منخفضة"],
+  "ther.risk.medium": ["Modéré", "Moderate", "متوسطة"],
+  "ther.risk.high": ["Élevé", "High", "مرتفعة"],
 };
