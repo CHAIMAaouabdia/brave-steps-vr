@@ -10,10 +10,10 @@ import { useI18n } from "@/lib/i18n";
 export const Route = createFileRoute("/ai")({
   head: () => ({
     meta: [
-      { title: "Assistant IA thérapeutique — G_Phob" },
-      { name: "description", content: "Un accompagnement conversationnel simulé disponible entre vos séances." },
-      { property: "og:title", content: "Assistant IA — G_Phob" },
-      { property: "og:description", content: "Discutez avec votre thérapeute virtuel." },
+      { title: "المساعد العلاجي الذكي — G_Phob" },
+      { name: "description", content: "مرافقة حوارية افتراضية متاحة بين جلساتك العلاجية." },
+      { property: "og:title", content: "المساعد الذكي — G_Phob" },
+      { property: "og:description", content: "تحدّث مع معالجك الافتراضي." },
     ],
   }),
   component: AIPage,

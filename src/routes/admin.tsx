@@ -12,10 +12,10 @@ import { PATIENTS, monthlyProgress, type Patient } from "@/lib/mock-data";
 export const Route = createFileRoute("/admin")({
   head: () => ({
     meta: [
-      { title: "Administration — G_Phob" },
-      { name: "description", content: "Gestion des utilisateurs, statistiques plateforme et journaux système." },
-      { property: "og:title", content: "Administration — G_Phob" },
-      { property: "og:description", content: "Panneau d'administration de la plateforme G_Phob." },
+      { title: "لوحة الإدارة — G_Phob" },
+      { name: "description", content: "إدارة المستخدمين وإحصاءات المنصة وسجلات النظام." },
+      { property: "og:title", content: "لوحة الإدارة — G_Phob" },
+      { property: "og:description", content: "لوحة إدارة منصة G_Phob." },
     ],
   }),
   component: AdminPage,

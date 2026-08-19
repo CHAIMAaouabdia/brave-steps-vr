@@ -14,10 +14,10 @@ import mountainImg from "@/assets/scene-mountain.jpg";
 export const Route = createFileRoute("/therapy")({
   head: () => ({
     meta: [
-      { title: "Niveaux d'exposition — G_Phob" },
-      { name: "description", content: "10 niveaux d'exposition graduelle gamifiés, du plus doux au plus intense." },
-      { property: "og:title", content: "Niveaux d'exposition — G_Phob" },
-      { property: "og:description", content: "Découvrez les 10 missions immersives du parcours." },
+      { title: "مستويات التعرّض — G_Phob" },
+      { name: "description", content: "10 مستويات تعرّض تدريجي بأسلوب تفاعلي، من الأخف إلى الأكثر شدة." },
+      { property: "og:title", content: "مستويات التعرّض — G_Phob" },
+      { property: "og:description", content: "اكتشف المهام الغامرة العشر في هذه الرحلة." },
     ],
   }),
   component: TherapyPage,

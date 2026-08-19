@@ -22,10 +22,10 @@ import heroImg from "@/assets/hero-vr.jpg";
 export const Route = createFileRoute("/auth")({
   head: () => ({
     meta: [
-      { title: "Connexion — G_Phob" },
-      { name: "description", content: "Connectez-vous ou créez votre compte patient ou thérapeute sur G_Phob." },
-      { property: "og:title", content: "Connexion — G_Phob" },
-      { property: "og:description", content: "Accédez à votre parcours de thérapie VR." },
+      { title: "تسجيل الدخول — G_Phob" },
+      { name: "description", content: "سجّل الدخول أو أنشئ حسابك كمريض أو معالج على G_Phob." },
+      { property: "og:title", content: "تسجيل الدخول — G_Phob" },
+      { property: "og:description", content: "ادخل إلى رحلتك العلاجية بالواقع الافتراضي." },
     ],
   }),
   component: AuthPage,

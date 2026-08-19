@@ -10,10 +10,10 @@ import { useI18n } from "@/lib/i18n";
 export const Route = createFileRoute("/notifications")({
   head: () => ({
     meta: [
-      { title: "Notifications — G_Phob" },
-      { name: "description", content: "Rappels quotidiens, succès débloqués et rendez-vous à venir." },
-      { property: "og:title", content: "Notifications — G_Phob" },
-      { property: "og:description", content: "Tous vos rappels thérapeutiques au même endroit." },
+      { title: "الإشعارات — G_Phob" },
+      { name: "description", content: "تذكيرات يومية وإنجازات محقّقة ومواعيد قادمة." },
+      { property: "og:title", content: "الإشعارات — G_Phob" },
+      { property: "og:description", content: "جميع تذكيراتك العلاجية في مكان واحد." },
     ],
   }),
   component: NotificationsPage,

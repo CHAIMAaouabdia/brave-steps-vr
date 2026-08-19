@@ -35,16 +35,16 @@ import therapistImg from "@/assets/therapist.jpg";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "G_Phob — Thérapie VR des phobies assistée par IA" },
+      { title: "G_Phob — علاج الرهاب بالواقع الافتراضي بمساعدة الذكاء الاصطناعي" },
       {
         name: "description",
         content:
-          "Vaincre les phobies et l'anxiété grâce à l'exposition graduelle en réalité virtuelle, la gamification et le suivi thérapeutique.",
+          "التغلب على الرهاب والقلق من خلال التعرّض التدريجي بالواقع الافتراضي، واللعب التحفيزي، والمتابعة العلاجية.",
       },
-      { property: "og:title", content: "G_Phob — Thérapie VR des phobies" },
+      { property: "og:title", content: "G_Phob — علاج الرهاب بالواقع الافتراضي" },
       {
         property: "og:description",
-        content: "Exposition graduelle en réalité virtuelle assistée par IA, pour tous les âges.",
+        content: "تعرّض تدريجي بالواقع الافتراضي بمساعدة الذكاء الاصطناعي، لجميع الأعمار.",
       },
     ],
   }),
@@ -52,33 +52,33 @@ export const Route = createFileRoute("/")({
 });
 
 const STEPS = [
-  { icon: Users, title: "Évaluation initiale", text: "Un questionnaire intelligent identifie vos peurs, leur intensité et leur impact." },
-  { icon: BrainCircuit, title: "Profil thérapeutique IA", text: "L'IA génère un parcours d'exposition personnalisé et un score de risque." },
-  { icon: Gamepad2, title: "Missions immersives", text: "10 niveaux d'exposition gamifiés, du plus doux au plus intense." },
-  { icon: LineChart, title: "Suivi clinique", text: "Votre thérapeute suit vos courbes de stress, d'humeur et de progression." },
+  { icon: Users, title: "التقييم الأولي", text: "استبيان ذكي يحدد مخاوفك وشدتها وتأثيرها على حياتك." },
+  { icon: BrainCircuit, title: "ملف علاجي بالذكاء الاصطناعي", text: "يولّد الذكاء الاصطناعي مسارًا تعرضيًا مخصصًا مع درجة مخاطر." },
+  { icon: Gamepad2, title: "مهام غامرة", text: "10 مستويات تعرّض بأسلوب اللعب، من الأخف إلى الأشد." },
+  { icon: LineChart, title: "متابعة سريرية", text: "يتابع معالجك منحنيات التوتر والمزاج والتقدّم." },
 ];
 
 const BENEFITS = [
-  { icon: ShieldCheck, title: "Environnement sécurisé", text: "L'exposition se fait dans un cadre virtuel totalement contrôlé, avec sortie immédiate possible." },
-  { icon: Gamepad2, title: "Motivation par le jeu", text: "XP, badges, pièces et récompenses quotidiennes maintiennent l'engagement des plus jeunes." },
-  { icon: HeartPulse, title: "Régulation émotionnelle", text: "Exercices de respiration et d'ancrage intégrés à chaque mission." },
-  { icon: Activity, title: "Données objectives", text: "Chaque session produit des indicateurs mesurables pour le clinicien." },
-  { icon: BrainCircuit, title: "IA d'accompagnement", text: "Un assistant conversationnel disponible 24/7 entre les séances." },
-  { icon: Users, title: "Tous les âges", text: "Des parcours adaptés aux enfants, adolescents et adultes." },
+  { icon: ShieldCheck, title: "بيئة آمنة", text: "يتم التعرّض في إطار افتراضي متحكم فيه بالكامل، مع إمكانية الخروج الفوري." },
+  { icon: Gamepad2, title: "تحفيز عبر اللعب", text: "نقاط خبرة وأوسمة وعملات ومكافآت يومية تحافظ على تفاعل الصغار." },
+  { icon: HeartPulse, title: "تنظيم الانفعالات", text: "تمارين تنفس وتثبيت مدمجة في كل مهمة." },
+  { icon: Activity, title: "بيانات موضوعية", text: "كل جلسة تنتج مؤشرات قابلة للقياس يستفيد منها المعالج." },
+  { icon: BrainCircuit, title: "مرافقة بالذكاء الاصطناعي", text: "مساعد محادثة متاح على مدار الساعة بين الجلسات." },
+  { icon: Users, title: "لجميع الأعمار", text: "مسارات مصممة للأطفال والمراهقين والبالغين." },
 ];
 
 const TESTIMONIALS = [
-  { name: "Yasmine, 12 ans", role: "Phobie des chiens", text: "Avant j'avais peur de sortir. Maintenant je caresse le chien de ma voisine !", rating: 5 },
-  { name: "Lucas, 27 ans", role: "Acrophobie", text: "Après 8 semaines, j'ai pu monter sur la terrasse du 15e étage sans panique.", rating: 5 },
-  { name: "Dr. Amina Rahmani", role: "Psychologue clinicienne", text: "Le suivi de données transforme réellement ma pratique en TCC.", rating: 5 },
+  { name: "ياسمين، 12 عامًا", role: "رهاب الكلاب", text: "كنت أخاف من الخروج. الآن أداعب كلب جارتي!", rating: 5 },
+  { name: "لوكاس، 27 عامًا", role: "رهاب المرتفعات", text: "بعد 8 أسابيع، تمكنت من الصعود إلى شرفة الطابق الخامس عشر دون ذعر.", rating: 5 },
+  { name: "د. أمينة الرحماني", role: "أخصائية نفسية سريرية", text: "متابعة البيانات غيّرت فعلاً ممارستي في العلاج المعرفي السلوكي.", rating: 5 },
 ];
 
 const FAQ = [
-  { q: "G_Phob remplace-t-il un thérapeute ?", a: "Non. G_Phob est un outil d'accompagnement conçu pour être utilisé en complément d'un suivi clinique. Chaque parcours peut être supervisé par un thérapeute." },
-  { q: "Faut-il un casque de réalité virtuelle ?", a: "Un casque améliore l'immersion, mais le prototype fonctionne également en mode écran sur ordinateur, tablette et mobile." },
-  { q: "À partir de quel âge ?", a: "Les parcours sont adaptés dès 7 ans, avec un mode enfant plus ludique et des sessions plus courtes." },
-  { q: "Mes données sont-elles protégées ?", a: "Les données de santé sont chiffrées et l'architecture cible est conforme RGPD. Ce prototype utilise des données simulées." },
-  { q: "Combien de temps dure un parcours ?", a: "En moyenne 8 à 12 semaines, à raison de 2 à 3 sessions hebdomadaires de 10 à 20 minutes." },
+  { q: "هل يحل G_Phob محل المعالج؟", a: "لا. G_Phob أداة مرافقة صُممت لتُستخدم كمكمّل للمتابعة السريرية. يمكن لأي معالج الإشراف على كل مسار." },
+  { q: "هل يلزم استخدام نظارة واقع افتراضي؟", a: "النظارة تحسّن الانغماس، لكن النموذج الأولي يعمل أيضًا بوضع الشاشة على الحاسوب واللوحي والهاتف." },
+  { q: "من أي عمر يمكن الاستخدام؟", a: "المسارات مناسبة ابتداءً من سن 7 سنوات، مع وضع خاص بالأطفال أكثر تفاعلاً وجلسات أقصر." },
+  { q: "هل بياناتي محمية؟", a: "بيانات الصحة مشفّرة والبنية المستهدفة متوافقة مع اللائحة العامة لحماية البيانات. يستخدم هذا النموذج الأولي بيانات محاكاة." },
+  { q: "كم تستغرق مدة المسار؟", a: "في المتوسط من 8 إلى 12 أسبوعًا، بمعدل جلستين إلى ثلاث أسبوعيًا مدة كل منها من 10 إلى 20 دقيقة." },
 ];
 
 function Landing() {
@@ -162,15 +162,15 @@ function Landing() {
           <div className="relative">
             <img
               src={heroImg}
-              alt="Enfant utilisant un casque de réalité virtuelle dans un environnement apaisant"
+              alt="طفل يستخدم نظارة واقع افتراضي في بيئة مهدئة"
               width={1408}
               height={1104}
               className="float-slow w-full rounded-4xl shadow-float"
             />
             <div className="absolute -bottom-4 start-2 hidden rounded-3xl bg-card p-4 shadow-float sm:block">
-              <p className="text-xs text-muted-foreground">Niveau de stress</p>
+              <p className="text-xs text-muted-foreground">مستوى التوتر</p>
               <p className="text-2xl font-bold text-emerald">-42%</p>
-              <p className="text-xs text-muted-foreground">après 6 sessions</p>
+              <p className="text-xs text-muted-foreground">بعد 6 جلسات</p>
             </div>
           </div>
         </div>
@@ -178,7 +178,7 @@ function Landing() {
 
       {/* HOW */}
       <section id="how" className="mx-auto max-w-7xl px-4 py-20 sm:px-6">
-        <SectionTitle kicker="Parcours" title={t("section.how")} />
+        <SectionTitle kicker="المسار" title={t("section.how")} />
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {STEPS.map((s, i) => (
             <Card key={s.title} className="hover-lift rounded-4xl border-none shadow-soft">
@@ -186,7 +186,7 @@ function Landing() {
                 <span className="grid size-12 place-items-center rounded-2xl gradient-calm text-primary-foreground">
                   <s.icon className="size-6" />
                 </span>
-                <p className="mt-4 text-xs font-bold text-muted-foreground">ÉTAPE {i + 1}</p>
+                <p className="mt-4 text-xs font-bold text-muted-foreground">الخطوة {i + 1}</p>
                 <h3 className="mt-1 text-lg font-bold">{s.title}</h3>
                 <p className="mt-2 text-sm text-muted-foreground">{s.text}</p>
               </CardContent>
@@ -198,7 +198,7 @@ function Landing() {
       {/* BENEFITS */}
       <section id="benefits" className="bg-secondary/40 py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
-          <SectionTitle kicker="Bénéfices" title={t("section.benefits")} />
+          <SectionTitle kicker="الفوائد" title={t("section.benefits")} />
           <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {BENEFITS.map((b) => (
               <Card key={b.title} className="hover-lift rounded-4xl border-none shadow-soft">
@@ -217,24 +217,23 @@ function Landing() {
       <section id="science" className="mx-auto max-w-7xl px-4 py-20 sm:px-6">
         <div className="grid items-center gap-12 lg:grid-cols-2">
           <div className="grid grid-cols-2 gap-4">
-            <img src={forestImg} loading="lazy" width={1600} height={900} alt="Scène immersive de forêt" className="col-span-2 rounded-4xl shadow-soft" />
-            <img src={mountainImg} loading="lazy" width={1600} height={900} alt="Scène immersive de montagne" className="rounded-3xl shadow-soft" />
-            <img src={therapistImg} loading="lazy" width={900} height={900} alt="Thérapeute clinicienne" className="rounded-3xl object-cover shadow-soft" />
+            <img src={forestImg} loading="lazy" width={1600} height={900} alt="مشهد غامر لغابة" className="col-span-2 rounded-4xl shadow-soft" />
+            <img src={mountainImg} loading="lazy" width={1600} height={900} alt="مشهد غامر لجبل" className="rounded-3xl shadow-soft" />
+            <img src={therapistImg} loading="lazy" width={900} height={900} alt="معالجة سريرية" className="rounded-3xl object-cover shadow-soft" />
           </div>
           <div>
-            <SectionTitle kicker="Science" title={t("section.science")} align="start" />
+            <SectionTitle kicker="العلم" title={t("section.science")} align="start" />
             <p className="mt-4 text-muted-foreground">
-              G_Phob s'appuie sur les thérapies cognitivo-comportementales (TCC) et sur l'exposition
-              graduelle, dont l'efficacité est documentée dans le traitement des phobies
-              spécifiques. La réalité virtuelle permet une habituation progressive dans un cadre
-              maîtrisé et reproductible.
+              يعتمد G_Phob على العلاج المعرفي السلوكي (TCC) والتعرّض التدريجي، اللذين
+              وُثّقت فعاليتهما في علاج أنواع الرهاب المحددة. يتيح الواقع الافتراضي
+              تعوّدًا تدريجيًا ضمن إطار متحكم فيه وقابل للتكرار.
             </p>
             <ul className="mt-6 space-y-3">
               {[
-                "Hiérarchie d'exposition en 10 paliers calibrés",
-                "Mesure continue du SUD (Subjective Units of Distress)",
-                "Renforcement positif et prévention de l'évitement",
-                "Rapports cliniques exportables pour le praticien",
+                "تسلسل هرمي للتعرّض على 10 مستويات معايرة",
+                "قياس مستمر لوحدة الضيق الذاتية (SUD)",
+                "تعزيز إيجابي والوقاية من التجنّب",
+                "تقارير سريرية قابلة للتصدير للممارس",
               ].map((li) => (
                 <li key={li} className="flex items-start gap-3">
                   <CheckCircle2 className="mt-0.5 size-5 shrink-0 text-emerald" />
@@ -249,7 +248,7 @@ function Landing() {
       {/* TESTIMONIALS */}
       <section id="testimonials" className="bg-secondary/40 py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
-          <SectionTitle kicker="Témoignages" title={t("section.testimonials")} />
+          <SectionTitle kicker="الشهادات" title={t("section.testimonials")} />
           <div className="mt-12 grid gap-6 md:grid-cols-3">
             {TESTIMONIALS.map((tst) => (
               <Card key={tst.name} className="hover-lift rounded-4xl border-none shadow-soft">
@@ -273,7 +272,7 @@ function Landing() {
 
       {/* FAQ */}
       <section id="faq" className="mx-auto max-w-3xl px-4 py-20 sm:px-6">
-        <SectionTitle kicker="FAQ" title={t("section.faq")} />
+        <SectionTitle kicker="الأسئلة الشائعة" title={t("section.faq")} />
         <Accordion type="single" collapsible className="mt-10">
           {FAQ.map((f) => (
             <AccordionItem key={f.q} value={f.q} className="rounded-3xl border-b px-2">
@@ -288,15 +287,15 @@ function Landing() {
       <section id="contact" className="bg-secondary/40 py-20">
         <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-2">
           <div>
-            <SectionTitle kicker="Contact" title={t("section.contact")} align="start" />
+            <SectionTitle kicker="تواصل معنا" title={t("section.contact")} align="start" />
             <p className="mt-4 text-muted-foreground">
-              Vous êtes clinicien, établissement de santé ou incubateur ? Écrivez-nous, nous
-              organisons une démonstration complète du prototype.
+              هل أنت طبيب سريري أو مؤسسة صحية أو حاضنة أعمال؟ راسلنا، وسننظم
+              عرضًا توضيحيًا كاملاً للنموذج الأولي.
             </p>
             <div className="mt-8 space-y-4 text-sm">
               <p className="flex items-center gap-3"><Mail className="size-4 text-primary" /> contact@gphob.io</p>
               <p className="flex items-center gap-3"><Phone className="size-4 text-primary" /> +33 1 84 80 00 12</p>
-              <p className="flex items-center gap-3"><MapPin className="size-4 text-primary" /> Paris · Tunis · Montréal</p>
+              <p className="flex items-center gap-3"><MapPin className="size-4 text-primary" /> باريس · تونس · مونتريال</p>
             </div>
           </div>
           <Card className="rounded-4xl border-none shadow-soft">
@@ -305,18 +304,18 @@ function Landing() {
                 className="space-y-4"
                 onSubmit={(e) => {
                   e.preventDefault();
-                  toast.success("Message envoyé ! Notre équipe vous répond sous 24h.");
+                  toast.success("تم إرسال الرسالة! سيرد فريقنا خلال 24 ساعة.");
                   (e.target as HTMLFormElement).reset();
                 }}
               >
                 <div className="grid gap-4 sm:grid-cols-2">
-                  <Input required placeholder="Nom" className="rounded-2xl" />
-                  <Input required type="email" placeholder="Email" className="rounded-2xl" />
+                  <Input required placeholder="الاسم" className="rounded-2xl" />
+                  <Input required type="email" placeholder="البريد الإلكتروني" className="rounded-2xl" />
                 </div>
-                <Input placeholder="Organisation" className="rounded-2xl" />
-                <Textarea required placeholder="Votre message" rows={5} className="rounded-2xl" />
+                <Input placeholder="المؤسسة" className="rounded-2xl" />
+                <Textarea required placeholder="رسالتك" rows={5} className="rounded-2xl" />
                 <Button type="submit" className="gradient-primary w-full rounded-2xl">
-                  Envoyer le message
+                  إرسال الرسالة
                 </Button>
               </form>
             </CardContent>
@@ -334,20 +333,20 @@ function Landing() {
               <span className="text-lg font-extrabold">G_Phob</span>
             </div>
             <p className="mt-3 text-sm text-muted-foreground">
-              Thérapie par exposition en réalité virtuelle assistée par IA. Prototype MVP.
+              علاج بالتعرّض عبر الواقع الافتراضي بمساعدة الذكاء الاصطناعي. نموذج أولي (MVP).
             </p>
           </div>
           {[
-            { title: "Produit", links: ["Fonctionnalités", "Niveaux", "Assistant IA", "Tarifs"] },
-            { title: "Cliniciens", links: ["Espace thérapeute", "Rapports", "Recherche", "Formation"] },
-            { title: "Légal", links: ["Confidentialité", "CGU", "RGPD", "Mentions légales"] },
+            { title: "المنتج", links: ["المزايا", "المستويات", "المساعد الذكي", "الأسعار"] },
+            { title: "الأطباء السريريون", links: ["مساحة المعالج", "التقارير", "البحث", "التدريب"] },
+            { title: "قانوني", links: ["الخصوصية", "شروط الاستخدام", "اللائحة العامة لحماية البيانات", "الإشعار القانوني"] },
           ].map((col) => (
             <div key={col.title}>
               <p className="font-semibold">{col.title}</p>
               <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
                 {col.links.map((l) => (
                   <li key={l}>
-                    <button className="transition-colors hover:text-foreground" onClick={() => toast.info("Section de démonstration")}>
+                    <button className="transition-colors hover:text-foreground" onClick={() => toast.info("قسم توضيحي")}>
                       {l}
                     </button>
                   </li>
@@ -357,7 +356,7 @@ function Landing() {
           ))}
         </div>
         <p className="mt-10 text-center text-xs text-muted-foreground">
-          © 2026 G_Phob. Prototype de démonstration — données simulées.
+          © 2026 G_Phob. نموذج أولي للعرض التوضيحي — بيانات محاكاة.
         </p>
       </footer>
     </div>

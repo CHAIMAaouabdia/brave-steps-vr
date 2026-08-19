@@ -11,10 +11,10 @@ import { useI18n } from "@/lib/i18n";
 export const Route = createFileRoute("/messages")({
   head: () => ({
     meta: [
-      { title: "Messages — G_Phob" },
-      { name: "description", content: "Échangez avec votre thérapeute et l'équipe de soin." },
-      { property: "og:title", content: "Messages — G_Phob" },
-      { property: "og:description", content: "Messagerie sécurisée patient-thérapeute." },
+      { title: "الرسائل — G_Phob" },
+      { name: "description", content: "تواصل مع معالجك وفريق الرعاية." },
+      { property: "og:title", content: "الرسائل — G_Phob" },
+      { property: "og:description", content: "مراسلة آمنة بين المريض والمعالج." },
     ],
   }),
   component: MessagesPage,

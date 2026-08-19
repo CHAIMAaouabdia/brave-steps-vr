@@ -11,10 +11,10 @@ import { useI18n } from "@/lib/i18n";
 export const Route = createFileRoute("/mood")({
   head: () => ({
     meta: [
-      { title: "Suivi de l'humeur — G_Phob" },
-      { name: "description", content: "Enregistrez votre humeur quotidienne et visualisez son historique." },
-      { property: "og:title", content: "Suivi de l'humeur — G_Phob" },
-      { property: "og:description", content: "Journal émotionnel quotidien." },
+      { title: "متابعة المزاج — G_Phob" },
+      { name: "description", content: "سجّل مزاجك اليومي واطّلع على سجله." },
+      { property: "og:title", content: "متابعة المزاج — G_Phob" },
+      { property: "og:description", content: "يوميات عاطفية يومية." },
     ],
   }),
   component: MoodPage,
