@@ -13,10 +13,10 @@ import { ACHIEVEMENTS, FEARS, LEVELS } from "@/lib/mock-data";
 export const Route = createFileRoute("/profile")({
   head: () => ({
     meta: [
-      { title: "Profil thérapeutique — G_Phob" },
-      { name: "description", content: "Profil généré par l'IA : score de peur, motivation, risque et thérapie recommandée." },
-      { property: "og:title", content: "Profil thérapeutique — G_Phob" },
-      { property: "og:description", content: "Votre profil clinique simulé et vos recommandations." },
+      { title: "الملف العلاجي — G_Phob" },
+      { name: "description", content: "ملف يُنشئه الذكاء الاصطناعي: درجة الخوف والدافعية والمخاطر والعلاج الموصى به." },
+      { property: "og:title", content: "الملف العلاجي — G_Phob" },
+      { property: "og:description", content: "ملفك السريري الافتراضي وتوصياتك." },
     ],
   }),
   component: ProfilePage,

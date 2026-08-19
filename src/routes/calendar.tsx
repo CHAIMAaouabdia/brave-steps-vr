@@ -12,10 +12,10 @@ import { useI18n } from "@/lib/i18n";
 export const Route = createFileRoute("/calendar")({
   head: () => ({
     meta: [
-      { title: "Calendrier & rendez-vous — G_Phob" },
-      { name: "description", content: "Planifiez vos séances, consultez l'historique et vos prochains rendez-vous." },
-      { property: "og:title", content: "Calendrier — G_Phob" },
-      { property: "og:description", content: "Agenda de vos sessions et rendez-vous thérapeutiques." },
+      { title: "التقويم والمواعيد — G_Phob" },
+      { name: "description", content: "خطّط لجلساتك واطّلع على سجلك ومواعيدك القادمة." },
+      { property: "og:title", content: "التقويم — G_Phob" },
+      { property: "og:description", content: "أجندة جلساتك ومواعيدك العلاجية." },
     ],
   }),
   component: CalendarPage,

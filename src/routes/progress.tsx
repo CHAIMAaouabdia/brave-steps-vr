@@ -14,10 +14,10 @@ import { useI18n } from "@/lib/i18n";
 export const Route = createFileRoute("/progress")({
   head: () => ({
     meta: [
-      { title: "Statistiques & progression — G_Phob" },
-      { name: "description", content: "Courbes de stress, d'humeur, de peur et taux de complétion de votre thérapie." },
-      { property: "og:title", content: "Statistiques — G_Phob" },
-      { property: "og:description", content: "Analyse complète de votre progression thérapeutique." },
+      { title: "الإحصاءات والتقدّم — G_Phob" },
+      { name: "description", content: "منحنيات التوتر والمزاج والخوف ونسبة إتمام علاجك." },
+      { property: "og:title", content: "الإحصاءات — G_Phob" },
+      { property: "og:description", content: "تحليل شامل لتقدّمك العلاجي." },
     ],
   }),
   component: ProgressPage,

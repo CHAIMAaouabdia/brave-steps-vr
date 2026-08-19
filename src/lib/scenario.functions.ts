@@ -50,7 +50,7 @@ export const analyzeAnswers = createServerFn({ method: "POST" })
         output: Output.object({ schema: AiSchema }),
         system:
           "You are a clinical psychologist specialised in gradual VR exposure therapy for phobias, and a game designer. " +
-          `Write every string in ${langName}. Be warm, concrete and clinically credible. Never give medical diagnoses.`,
+          `Write every string in ${langName}. If the language is Arabic, respond entirely in natural Modern Standard Arabic. Be warm, concrete and clinically credible. Never give medical diagnoses.`,
         prompt:
           `Patient questionnaire answers:\n${answersSummary(answers, lang)}\n\n` +
           `Computed fear score: ${local.fearScore}/10, risk: ${local.riskLevel}, motivation: ${local.motivation}/100.\n` +

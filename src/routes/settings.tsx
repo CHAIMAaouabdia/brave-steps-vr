@@ -12,10 +12,10 @@ import { useI18n, type Lang } from "@/lib/i18n";
 export const Route = createFileRoute("/settings")({
   head: () => ({
     meta: [
-      { title: "Paramètres — G_Phob" },
-      { name: "description", content: "Thème, langue, profil, sécurité, notifications et accessibilité." },
-      { property: "og:title", content: "Paramètres — G_Phob" },
-      { property: "og:description", content: "Personnalisez votre expérience G_Phob." },
+      { title: "الإعدادات — G_Phob" },
+      { name: "description", content: "المظهر واللغة والملف الشخصي والأمان والإشعارات وإمكانية الوصول." },
+      { property: "og:title", content: "الإعدادات — G_Phob" },
+      { property: "og:description", content: "خصّص تجربتك على G_Phob." },
     ],
   }),
   component: SettingsPage,

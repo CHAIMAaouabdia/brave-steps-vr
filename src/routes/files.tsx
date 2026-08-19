@@ -11,10 +11,10 @@ import { useI18n } from "@/lib/i18n";
 export const Route = createFileRoute("/files")({
   head: () => ({
     meta: [
-      { title: "Documents médicaux — G_Phob" },
-      { name: "description", content: "Déposez et consultez vos rapports médicaux, ordonnances et images." },
-      { property: "og:title", content: "Documents — G_Phob" },
-      { property: "og:description", content: "Gestion de vos documents de santé." },
+      { title: "المستندات الطبية — G_Phob" },
+      { name: "description", content: "أضف واطّلع على تقاريرك الطبية ووصفاتك وصورك." },
+      { property: "og:title", content: "المستندات — G_Phob" },
+      { property: "og:description", content: "إدارة مستنداتك الصحية." },
     ],
   }),
   component: FilesPage,

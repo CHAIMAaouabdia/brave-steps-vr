@@ -16,10 +16,10 @@ import { PATIENTS, monthlyProgress, type Patient } from "@/lib/mock-data";
 export const Route = createFileRoute("/therapist")({
   head: () => ({
     meta: [
-      { title: "Espace thérapeute — G_Phob" },
-      { name: "description", content: "Suivi de patientèle : niveaux, risques, statistiques et notes cliniques." },
-      { property: "og:title", content: "Espace thérapeute — G_Phob" },
-      { property: "og:description", content: "Tableau de bord clinique pour les praticiens." },
+      { title: "مساحة المعالج — G_Phob" },
+      { name: "description", content: "متابعة المرضى: المستويات والمخاطر والإحصاءات والملاحظات السريرية." },
+      { property: "og:title", content: "مساحة المعالج — G_Phob" },
+      { property: "og:description", content: "لوحة تحكم سريرية للأخصائيين." },
     ],
   }),
   component: TherapistPage,

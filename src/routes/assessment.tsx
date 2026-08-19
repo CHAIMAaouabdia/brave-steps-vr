@@ -15,10 +15,10 @@ import { analyzeAnswers } from "@/lib/scenario.functions";
 export const Route = createFileRoute("/assessment")({
   head: () => ({
     meta: [
-      { title: "Évaluation initiale — G_Phob" },
-      { name: "description", content: "Questionnaire à choix multiples analysé par l'IA pour générer votre scénario de jeu thérapeutique." },
-      { property: "og:title", content: "Évaluation initiale — G_Phob" },
-      { property: "og:description", content: "Répondez au questionnaire, l'IA construit votre parcours." },
+      { title: "التقييم الأولي — G_Phob" },
+      { name: "description", content: "استبيان متعدد الخيارات يحلله الذكاء الاصطناعي لإنشاء سيناريو لعبتك العلاجية." },
+      { property: "og:title", content: "التقييم الأولي — G_Phob" },
+      { property: "og:description", content: "أجب عن الاستبيان، ويبني الذكاء الاصطناعي مسارك." },
     ],
   }),
   component: AssessmentPage,

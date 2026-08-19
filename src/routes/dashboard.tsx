@@ -36,10 +36,10 @@ import { ACHIEVEMENTS, LEVELS, weeklySessions } from "@/lib/mock-data";
 export const Route = createFileRoute("/dashboard")({
   head: () => ({
     meta: [
-      { title: "Tableau de bord — G_Phob" },
-      { name: "description", content: "Suivez vos missions, votre progression thérapeutique et vos récompenses au quotidien." },
-      { property: "og:title", content: "Tableau de bord — G_Phob" },
-      { property: "og:description", content: "Missions du jour, progression et récompenses." },
+      { title: "لوحة التحكم — G_Phob" },
+      { name: "description", content: "تابع مهامك وتقدّمك العلاجي ومكافآتك يوميًا." },
+      { property: "og:title", content: "لوحة التحكم — G_Phob" },
+      { property: "og:description", content: "مهام اليوم والتقدّم والمكافآت." },
     ],
   }),
   component: Dashboard,

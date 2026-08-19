@@ -77,16 +77,16 @@ const defaultState: State = {
   results: {},
   progress: { xp: 1840, coins: 320, completed: [1, 2, 3], sessions: 17, streak: 5 },
   moods: [
-    { id: "m1", mood: "😊", note: "Bonne séance ce matin", date: "2026-08-03" },
-    { id: "m2", mood: "😐", note: "Journée neutre", date: "2026-08-02" },
-    { id: "m3", mood: "😨", note: "Anxiété avant la mission pont", date: "2026-08-01" },
+    { id: "m1", mood: "😊", note: "جلسة جيدة هذا الصباح", date: "2026-08-03" },
+    { id: "m2", mood: "😐", note: "يوم عادي", date: "2026-08-02" },
+    { id: "m3", mood: "😨", note: "قلق قبل مهمة الجسر", date: "2026-08-01" },
   ],
   notifications: [
-    { id: "n1", title: "Rappel quotidien", body: "Votre séance de 15 minutes vous attend.", type: "reminder", date: "Aujourd'hui, 09:00", read: false },
-    { id: "n2", title: "Succès débloqué", body: "Badge « Explorateur » obtenu !", type: "achievement", date: "Hier, 18:24", read: false },
-    { id: "n3", title: "Session terminée", body: "Niveau 3 — Pluie d'étoiles complété à 100%.", type: "session", date: "Hier, 18:20", read: true },
-    { id: "n4", title: "Prochain rendez-vous", body: "Dr. Amina Rahmani — vendredi 14:30.", type: "appointment", date: "Il y a 2 jours", read: true },
-    { id: "n5", title: "Citation du jour", body: "Chaque exposition est une victoire sur l'évitement.", type: "quote", date: "Il y a 2 jours", read: true },
+    { id: "n1", title: "تذكير يومي", body: "جلستك التي تستغرق 15 دقيقة بانتظارك.", type: "reminder", date: "اليوم، 09:00", read: false },
+    { id: "n2", title: "إنجاز مُحقَّق", body: "تم الحصول على وسام «المستكشف»!", type: "achievement", date: "أمس، 18:24", read: false },
+    { id: "n3", title: "انتهت الجلسة", body: "المستوى 3 — مطر النجوم اكتمل بنسبة 100%.", type: "session", date: "أمس، 18:20", read: true },
+    { id: "n4", title: "الموعد القادم", body: "د. أمينة رحماني — الجمعة الساعة 14:30.", type: "appointment", date: "قبل يومين", read: true },
+    { id: "n5", title: "اقتباس اليوم", body: "كل تعرّض هو انتصار على التجنّب.", type: "quote", date: "قبل يومين", read: true },
   ],
   theme: "light",
 };
@@ -142,8 +142,8 @@ export function AppStateProvider({ children }: { children: ReactNode }) {
           user: s.user
             ? { ...s.user, email, role }
             : {
-                firstName: role === "therapist" ? "Amina" : "Yasmine",
-                lastName: role === "therapist" ? "Rahmani" : "Belkacem",
+                firstName: role === "therapist" ? "أمينة" : "ياسمين",
+                lastName: role === "therapist" ? "رحماني" : "بلقاسم",
                 email,
                 role,
               },
@@ -175,10 +175,10 @@ export function AppStateProvider({ children }: { children: ReactNode }) {
           notifications: [
             {
               id: `n${Date.now()}`,
-              title: "Session terminée",
-              body: `Niveau ${id} complété. +${xp} XP, +${coins} pièces.`,
+              title: "انتهت الجلسة",
+              body: `اكتمل المستوى ${id}. +${xp} نقطة خبرة، +${coins} عملة.`,
               type: "session",
-              date: "À l'instant",
+              date: "الآن",
               read: false,
             },
             ...s.notifications,
@@ -198,7 +198,7 @@ export function AppStateProvider({ children }: { children: ReactNode }) {
         update((s) => ({
           ...s,
           notifications: [
-            { ...n, id: `n${Date.now()}`, date: "À l'instant", read: false },
+            { ...n, id: `n${Date.now()}`, date: "الآن", read: false },
             ...s.notifications,
           ],
         })),
