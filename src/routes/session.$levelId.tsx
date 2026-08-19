@@ -22,10 +22,10 @@ import mountainImg from "@/assets/scene-mountain.jpg";
 export const Route = createFileRoute("/session/$levelId")({
   head: () => ({
     meta: [
-      { title: "Session immersive — G_Phob" },
-      { name: "description", content: "Session d'exposition immersive simulée avec objectifs, minuteur et suivi du stress." },
-      { property: "og:title", content: "Session immersive — G_Phob" },
-      { property: "og:description", content: "Entrez en immersion et complétez votre mission." },
+      { title: "جلسة غامرة — G_Phob" },
+      { name: "description", content: "جلسة تعرض غامرة محاكاة مع أهداف ومؤقت ومتابعة للتوتر." },
+      { property: "og:title", content: "جلسة غامرة — G_Phob" },
+      { property: "og:description", content: "ادخل في التجربة الغامرة وأكمل مهمتك." },
     ],
   }),
   component: SessionPage,

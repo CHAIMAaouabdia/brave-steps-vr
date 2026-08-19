@@ -14,10 +14,10 @@ import mountainImg from "@/assets/scene-mountain.jpg";
 export const Route = createFileRoute("/game/$levelId")({
   head: () => ({
     meta: [
-      { title: "Mission interactive — G_Phob" },
-      { name: "description", content: "Mission d'exposition interactive : cliquez sur les cibles, gérez votre anxiété et validez le palier." },
-      { property: "og:title", content: "Mission interactive — G_Phob" },
-      { property: "og:description", content: "Un mini-jeu d'exposition graduelle généré par l'IA." },
+      { title: "مهمة تفاعلية — G_Phob" },
+      { name: "description", content: "مهمة تعرض تفاعلية: انقر على الأهداف، تحكم في قلقك، وأنجز المرحلة." },
+      { property: "og:title", content: "مهمة تفاعلية — G_Phob" },
+      { property: "og:description", content: "لعبة صغيرة للتعرض التدريجي أنشأها الذكاء الاصطناعي." },
     ],
   }),
   component: GamePage,
