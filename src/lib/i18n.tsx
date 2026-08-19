@@ -250,7 +250,7 @@ const idx: Record<Lang, 0 | 1 | 2> = { fr: 0, en: 1, ar: 2 };
 const Ctx = createContext<I18nCtx | null>(null);
 
 export function I18nProvider({ children }: { children: ReactNode }) {
-  const [lang, setLangState] = useState<Lang>("fr");
+  const [lang, setLangState] = useState<Lang>("ar");
 
   useEffect(() => {
     const stored = localStorage.getItem("gphob.lang") as Lang | null;
